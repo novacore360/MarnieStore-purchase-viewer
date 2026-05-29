@@ -1,0 +1,96 @@
+.install-prompt {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+  z-index: 10000;
+  animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.install-prompt-content {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border-radius: 20px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.theme-night .install-prompt-content {
+  background: rgba(30, 40, 60, 0.95);
+  color: #e0e0e0;
+}
+
+.install-icon {
+  font-size: 48px;
+  margin-bottom: 12px;
+}
+
+.install-prompt-content h3 {
+  margin: 0 0 8px 0;
+  font-size: 18px;
+}
+
+.install-prompt-content p {
+  margin: 0 0 16px 0;
+  font-size: 14px;
+  opacity: 0.7;
+}
+
+.install-buttons {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.install-btn, .dismiss-btn {
+  padding: 10px 20px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.install-btn {
+  background: #4e73df;
+  color: white;
+  border: none;
+}
+
+.install-btn:hover {
+  background: #365ec4;
+  transform: translateY(-1px);
+}
+
+.dismiss-btn {
+  background: transparent;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  color: inherit;
+}
+
+.dismiss-btn:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+@media (min-width: 768px) {
+  .install-prompt {
+    bottom: 30px;
+    right: 30px;
+    left: auto;
+  }
+}

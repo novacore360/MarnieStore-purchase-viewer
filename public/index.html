@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#4e73df" />
+  <meta name="description" content="Marnie Store - Customer Purchase Viewer. View customer purchase history and manage transactions." />
+  
+  <!-- PWA Meta Tags -->
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Marnie Store" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="application-name" content="Marnie Store" />
+  <meta name="msapplication-TileColor" content="#4e73df" />
+  <meta name="msapplication-tap-highlight" content="no" />
+  
+  <!-- PWA Icons -->
+  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+  <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="%PUBLIC_URL%/logo192.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="%PUBLIC_URL%/logo192.png" />
+  
+  <!-- PWA Splash Screens for iOS -->
+  <link rel="apple-touch-startup-image" href="%PUBLIC_URL%/logo512.png" />
+  
+  <!-- Preconnect to Firebase for faster loading -->
+  <link rel="preconnect" href="https://firestore.googleapis.com" />
+  <link rel="preconnect" href="https://www.googleapis.com" />
+  
+  <title>Marnie Store - Customer Purchase Viewer</title>
+  
+  <style>
+    #root {
+      min-height: 100vh;
+    }
+    .loading-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    }
+    .loading-spinner { text-align: center; }
+    .loading-spinner .spinner {
+      width: 50px;
+      height: 50px;
+      border: 4px solid rgba(78, 115, 223, 0.2);
+      border-top-color: #4e73df;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin: 0 auto 16px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .loading-spinner p { color: #4e73df; font-size: 14px; margin: 0; }
+  </style>
+</head>
+<body>
+  <div id="root">
+    <div class="loading-container">
+      <div class="loading-spinner">
+        <div class="spinner"></div>
+        <p>Loading Marnie Store...</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
