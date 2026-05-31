@@ -1987,6 +1987,18 @@ body.theme-darkmode .empty-state p    { color: #606060; }
 body.theme-darkmode .empty-icon svg   { stroke: #505050; }
 body.theme-darkmode .loader-text { color: #707070; }
 
+/* Glowing icons for dark mode navigation */
+body.theme-sunset .nav-btn--active .nav-icon-svg,
+body.theme-dusk .nav-btn--active .nav-icon-svg,
+body.theme-night .nav-btn--active .nav-icon-svg {
+  filter: drop-shadow(0 0 4px currentColor);
+}
+
+body.theme-sunset .nav-btn--active,
+body.theme-dusk .nav-btn--active,
+body.theme-night .nav-btn--active {
+  text-shadow: 0 0 4px currentColor;
+}
 /* ── Scrollbar ── */
 body.theme-darkmode .tab-content::-webkit-scrollbar-thumb { background: rgba(192,192,192,0.08); }
 
