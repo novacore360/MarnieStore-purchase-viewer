@@ -1,8 +1,9 @@
-/* App.js - Updated with receipt-style purchases and SVG navigation */
+/* App.js - Updated with Hamster Loading Animation (keeping getDocs) */
 import React, { useState, useEffect, useCallback } from 'react';
 import { db } from './firebase';
 import { collection, getDocs } from 'firebase/firestore';
 import InstallPrompt from './InstallPrompt';
+import Loader from './Loader';
 import './App.css';
 
 // ─── Weather helpers (Open-Meteo, no API key) ───────────────────────────────
@@ -45,7 +46,7 @@ function App() {
   const [searchTerm, setSearchTerm] = useState('');
   const [suggestions, setSuggestions] = useState([]);
   const [selectedCustomer, setSelectedCustomer] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [theme, setTheme] = useState('morning');
 
@@ -80,8 +81,9 @@ function App() {
 
   // ── Load Firebase data ───────────────────────────────────────────────────
   useEffect(() => {
-    loadCustomers();
-    loadAllPurchases();
+    Promise.all([loadCustomers(), loadAllPurchases()]).then(() => {
+      setLoading(false);
+    });
   }, []);
 
   // ── Restore selected customer from localStorage after data loads ─────────
@@ -99,13 +101,10 @@ function App() {
 
   const loadCustomers = async () => {
     try {
-      setLoading(true);
       const snap = await getDocs(collection(db, 'customers'));
       setCustomers(snap.docs.map(d => ({ id: d.id, ...d.data() })));
     } catch (e) {
       console.error(e);
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -247,6 +246,20 @@ function App() {
     )
   };
 
+  // Show loading spinner while data is being fetched
+  if (loading) {
+    return (
+      <div className="app">
+        <div className="glass-container">
+          <div className="loader-container">
+            <Loader size="medium" />
+            <p className="loader-text">Loading Marnie Store...</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="app">
       <div className="glass-container">
@@ -325,7 +338,7 @@ function App() {
 
                     <div className="metrics-grid">
                       <div className="metric-card metric-card--blue">
-                        <div className="metric-label">Total Utang</div>
+                        <div className="metric-label">Total Spent</div>
                         <div className="metric-value">₱{totalSpent.toLocaleString('en-PH',{minimumFractionDigits:2})}</div>
                         <div className="metric-sub">{customerPurchases.length} orders</div>
                       </div>
@@ -349,9 +362,7 @@ function App() {
 
                   <section className="section">
                     <h2 className="section-title">Purchase History <span className="count-pill">{customerPurchases.length}</span></h2>
-                    {loading ? (
-                      <div className="spinner-wrap"><div className="spinner" /></div>
-                    ) : customerPurchases.length === 0 ? (
+                    {customerPurchases.length === 0 ? (
                       <div className="empty-state">
                         <div className="empty-icon">📭</div>
                         <p>No purchases found for this customer.</p>
@@ -432,18 +443,17 @@ function App() {
                 <button className="weather-refresh-btn" onClick={fetchWeather} title="Refresh">🔄</button>
               </div>
 
-              {weatherLoading && (
-                <div className="spinner-wrap large"><div className="spinner" /></div>
-              )}
-
-              {weatherError && !weatherLoading && (
+              {weatherLoading ? (
+                <div className="loader-container">
+                  <Loader size="medium" />
+                  <p className="loader-text">Fetching weather data...</p>
+                </div>
+              ) : weatherError ? (
                 <div className="weather-error">
                   <span>⚠️ {weatherError}</span>
                   <button onClick={fetchWeather}>Retry</button>
                 </div>
-              )}
-
-              {weather && !weatherLoading && (
+              ) : weather ? (
                 <>
                   <div className="weather-hero">
                     <div className="weather-hero-icon">{getWeatherInfo(weather.weather_code).icon}</div>
@@ -488,7 +498,7 @@ function App() {
                     </div>
                   </section>
                 </>
-              )}
+              ) : null}
             </div>
           )}
 
@@ -541,7 +551,7 @@ function App() {
           )}
         </div>
 
-        {/* BOTTOM NAV - SVG Icons instead of emojis */}
+        {/* BOTTOM NAV - SVG Icons */}
         <nav className="bottom-nav">
           {[
             { key: 'dashboard', icon: NavIcons.dashboard, label: 'Dashboard' },
