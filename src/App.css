@@ -1977,7 +1977,7 @@ body.theme-darkmode .nav-btn--active {
   background: rgba(192,192,192,0.10);
   color: #c0c0c0;
 }
-body.theme-darkmode .nav-btn--active .nav-icon-svg { stroke: #c0c0c0; }
+
 
 /* ── Empty / Welcome States ── Silver text */
 body.theme-darkmode .welcome-state h3 { color: #808080; }
@@ -1986,6 +1986,19 @@ body.theme-darkmode .welcome-icon svg { stroke: #505050; }
 body.theme-darkmode .empty-state p    { color: #606060; }
 body.theme-darkmode .empty-icon svg   { stroke: #505050; }
 body.theme-darkmode .loader-text { color: #707070; }
+body.theme-darkmode .nav-btn--active .nav-icon-svg {
+  stroke: #c0c0c0;
+  filter: drop-shadow(0 0 4px rgba(192, 192, 192, 0.6));
+  transition: filter 0.2s ease;
+}
+/* Add this anywhere in the dark mode section */
+body.theme-darkmode .nav-btn:hover .nav-icon-svg {
+  filter: drop-shadow(0 0 3px rgba(192, 192, 192, 0.4));
+}
+
+body.theme-darkmode .nav-btn--active .nav-icon-svg {
+  filter: drop-shadow(0 0 5px rgba(192, 192, 192, 0.7));
+}
 
 /* Glowing icons for dark mode navigation */
 body.theme-sunset .nav-btn--active .nav-icon-svg,
