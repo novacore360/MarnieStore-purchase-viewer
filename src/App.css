@@ -1618,47 +1618,38 @@ body.theme-night::after {
 }
 
 /* ============================================================
-   DARK MODE — NOCTURNE ABSOLUTE LIQUID GLASSMORPHISM
+   DARK MODE — PURE BLACK BACKGROUND + LIQUID CRYSTAL CARDS
+   All containers: liquid crystal glassmorphism. Fonts: silver tones.
+   Icons: silver stroke. Zero gray backgrounds.
    ============================================================ */
 
-/* ── Dark Mode Body Background ── */
-
-/* ============================================================
-   DARK MODE — PEACH-BLACK LIQUID CRYSTAL GLASSMORPHISM
-   Palette: #1a0f0a body / silver-grey edges / crystal-clear glass
-   ============================================================ */
-
-/* ── Body: Peach-Black ── */
+/* ── Dark Mode Body: Pitch Black with subtle depth ── */
 body.theme-darkmode {
-  background:
-    radial-gradient(ellipse 120% 80% at 50% 0%,   #2a1208 0%, transparent 60%),
-    radial-gradient(ellipse 80%  60% at 0%   100%, #1a0c06 0%, transparent 55%),
-    radial-gradient(ellipse 80%  60% at 100% 100%, #1e0e08 0%, transparent 55%),
-    linear-gradient(180deg, #120800 0%, #0d0500 40%, #0a0300 100%);
-  color: #e8ddd8;
+  background: #000000;
+  background: radial-gradient(ellipse 80% 60% at 50% 30%, #0a0a0a 0%, #000000 80%);
+  color: #c0c0c0;
   transition: background 0.6s ease, color 0.3s ease;
 }
 
-/* Subtle star-field + peach horizon glow */
+/* Subtle micro-star field for depth */
 body.theme-darkmode::before {
   content: '';
   position: fixed; inset: 0;
   background:
-    radial-gradient(ellipse 100% 40% at 50% 100%, rgba(180, 80, 30, 0.07) 0%, transparent 65%),
-    radial-gradient(circle 0.7px at 12% 8%,  rgba(255,230,210,0.5) 0%, transparent 100%),
-    radial-gradient(circle 0.5px at 27% 5%,  rgba(255,230,210,0.4) 0%, transparent 100%),
-    radial-gradient(circle 0.8px at 44% 11%, rgba(255,230,210,0.55) 0%, transparent 100%),
-    radial-gradient(circle 0.4px at 61% 6%,  rgba(255,230,210,0.38) 0%, transparent 100%),
-    radial-gradient(circle 0.7px at 79% 9%,  rgba(255,230,210,0.48) 0%, transparent 100%),
-    radial-gradient(circle 0.5px at 91% 15%, rgba(255,230,210,0.35) 0%, transparent 100%),
-    radial-gradient(circle 0.6px at 6%  24%, rgba(255,230,210,0.42) 0%, transparent 100%),
-    radial-gradient(circle 0.8px at 33% 29%, rgba(255,230,210,0.5)  0%, transparent 100%),
-    radial-gradient(circle 0.5px at 56% 20%, rgba(255,230,210,0.4)  0%, transparent 100%),
-    radial-gradient(circle 0.7px at 74% 33%, rgba(255,230,210,0.45) 0%, transparent 100%),
-    radial-gradient(circle 0.6px at 88% 26%, rgba(255,230,210,0.38) 0%, transparent 100%),
-    radial-gradient(circle 0.9px at 20% 42%, rgba(255,230,210,0.52) 0%, transparent 100%),
-    radial-gradient(circle 0.5px at 50% 38%, rgba(255,230,210,0.4)  0%, transparent 100%),
-    radial-gradient(circle 0.7px at 84% 44%, rgba(255,230,210,0.45) 0%, transparent 100%);
+    radial-gradient(circle 0.5px at 12% 8%,  rgba(192,192,192,0.25) 0%, transparent 100%),
+    radial-gradient(circle 0.5px at 27% 5%,  rgba(192,192,192,0.20) 0%, transparent 100%),
+    radial-gradient(circle 0.5px at 44% 11%, rgba(192,192,192,0.28) 0%, transparent 100%),
+    radial-gradient(circle 0.5px at 61% 6%,  rgba(192,192,192,0.18) 0%, transparent 100%),
+    radial-gradient(circle 0.5px at 79% 9%,  rgba(192,192,192,0.22) 0%, transparent 100%),
+    radial-gradient(circle 0.5px at 91% 15%, rgba(192,192,192,0.16) 0%, transparent 100%),
+    radial-gradient(circle 0.5px at 6%  24%, rgba(192,192,192,0.20) 0%, transparent 100%),
+    radial-gradient(circle 0.5px at 33% 29%, rgba(192,192,192,0.24) 0%, transparent 100%),
+    radial-gradient(circle 0.5px at 56% 20%, rgba(192,192,192,0.18) 0%, transparent 100%),
+    radial-gradient(circle 0.5px at 74% 33%, rgba(192,192,192,0.22) 0%, transparent 100%),
+    radial-gradient(circle 0.5px at 88% 26%, rgba(192,192,192,0.16) 0%, transparent 100%),
+    radial-gradient(circle 0.5px at 20% 42%, rgba(192,192,192,0.26) 0%, transparent 100%),
+    radial-gradient(circle 0.5px at 50% 38%, rgba(192,192,192,0.18) 0%, transparent 100%),
+    radial-gradient(circle 0.5px at 84% 44%, rgba(192,192,192,0.20) 0%, transparent 100%);
   pointer-events: none;
   z-index: 0;
 }
@@ -1666,93 +1657,92 @@ body.theme-darkmode::before {
 body.theme-darkmode::after {
   content: '';
   position: fixed; inset: 0;
-  background:
-    linear-gradient(180deg, transparent 70%, rgba(10, 4, 2, 0.95) 100%);
+  background: linear-gradient(180deg, transparent 70%, rgba(0,0,0,0.95) 100%);
   pointer-events: none;
   z-index: 0;
 }
 
-/* ── CSS Variables: Crystal clear, silver-grey edges ── */
+/* ── CSS Variables: Liquid Crystal Glassmorphism | Silver/Grey Text ── */
 .theme-darkmode,
 body.theme-darkmode .app {
-  --glass-bg:           rgba(255, 220, 195, 0.028);
-  --glass-bg-card:      rgba(255, 215, 190, 0.032);
-  --glass-border:       rgba(180, 160, 150, 0.12);
-  --glass-border-top:   rgba(220, 200, 190, 0.22);
-  --glass-shadow:       0 8px 40px rgba(0,0,0,0.75), 0 1px 0 rgba(255,220,190,0.08) inset;
-  --glass-shadow-card:  0 4px 24px rgba(0,0,0,0.65), 0 1px 0 rgba(255,220,190,0.07) inset;
-  --text-primary:       #ede0d8;
-  --text-secondary:     #a89890;
-  --text-muted:         #5a4a44;
-  --accent:             #c8a898;
-  --accent-soft:        rgba(200, 168, 152, 0.10);
-  --card-bg:            rgba(255, 210, 185, 0.030);
-  --card-hover:         rgba(255, 215, 190, 0.055);
-  --input-bg:           rgba(255, 205, 180, 0.035);
-  --input-border:       rgba(180, 155, 145, 0.14);
-  --divider:            rgba(160, 140, 130, 0.08);
-  --nav-bg:             rgba(14, 6, 3, 0.88);
-  --nav-active-bg:      rgba(200, 168, 152, 0.12);
-  --nav-active-color:   #d4b8a8;
-  --badge-paid-bg:      rgba(180, 220, 200, 0.10);
-  --badge-paid-color:   #8ec8b0;
-  --badge-pending-bg:   rgba(220, 190, 140, 0.10);
-  --badge-pending-color:#c8a870;
-  --stat-blue:          rgba(200, 185, 175, 0.07);
-  --stat-green:         rgba(200, 185, 175, 0.07);
-  --stat-amber:         rgba(200, 185, 175, 0.07);
-  --stat-purple:        rgba(200, 185, 175, 0.07);
-  --metric-blue:        rgba(200, 185, 175, 0.08);
-  --metric-green:       rgba(200, 185, 175, 0.08);
-  --metric-amber:       rgba(200, 185, 175, 0.08);
-  --metric-purple:      rgba(200, 185, 175, 0.08);
-  --weather-hero-bg:    rgba(255, 210, 185, 0.030);
-  --receipt-stripe:     rgba(255, 210, 185, 0.018);
-  --shimmer:            rgba(220, 195, 185, 0.10);
+  --glass-bg:           rgba(192, 192, 192, 0.03);
+  --glass-bg-card:      rgba(192, 192, 192, 0.04);
+  --glass-border:       rgba(192, 192, 192, 0.12);
+  --glass-border-top:   rgba(255, 255, 255, 0.08);
+  --glass-shadow:       0 8px 32px rgba(0,0,0,0.8), 0 1px 0 rgba(255,255,255,0.03) inset;
+  --glass-shadow-card:  0 4px 20px rgba(0,0,0,0.7), 0 1px 0 rgba(255,255,255,0.02) inset;
+  --text-primary:       #e0e0e0;
+  --text-secondary:     #a8a8a8;
+  --text-muted:         #707070;
+  --accent:             #c0c0c0;
+  --accent-soft:        rgba(192, 192, 192, 0.08);
+  --card-bg:            rgba(192, 192, 192, 0.035);
+  --card-hover:         rgba(192, 192, 192, 0.06);
+  --input-bg:           rgba(192, 192, 192, 0.04);
+  --input-border:       rgba(192, 192, 192, 0.15);
+  --divider:            rgba(192, 192, 192, 0.08);
+  --nav-bg:             rgba(0, 0, 0, 0.92);
+  --nav-active-bg:      rgba(192, 192, 192, 0.12);
+  --nav-active-color:   #d0d0d0;
+  --badge-paid-bg:      rgba(160, 200, 180, 0.12);
+  --badge-paid-color:   #a0c0b0;
+  --badge-pending-bg:   rgba(200, 180, 140, 0.12);
+  --badge-pending-color:#b8a870;
+  --stat-blue:          rgba(192, 192, 192, 0.06);
+  --stat-green:         rgba(192, 192, 192, 0.06);
+  --stat-amber:         rgba(192, 192, 192, 0.06);
+  --stat-purple:        rgba(192, 192, 192, 0.06);
+  --metric-blue:        rgba(192, 192, 192, 0.07);
+  --metric-green:       rgba(192, 192, 192, 0.07);
+  --metric-amber:       rgba(192, 192, 192, 0.07);
+  --metric-purple:      rgba(192, 192, 192, 0.07);
+  --weather-hero-bg:    rgba(192, 192, 192, 0.04);
+  --receipt-stripe:     rgba(192, 192, 192, 0.03);
+  --shimmer:            rgba(255, 255, 255, 0.05);
 }
 
-/* ── Glass Container ── */
+/* ── Main Glass Container ── Liquid Crystal Effect */
 body.theme-darkmode .glass-container {
-  background: rgba(255, 210, 185, 0.022);
-  backdrop-filter: blur(70px) saturate(1.5) brightness(1.0);
-  -webkit-backdrop-filter: blur(70px) saturate(1.5) brightness(1.0);
-  border: 1px solid rgba(200, 175, 160, 0.10);
-  border-top-color: rgba(220, 200, 185, 0.20);
+  background: rgba(192, 192, 192, 0.025);
+  backdrop-filter: blur(50px) saturate(1.8) brightness(0.95);
+  -webkit-backdrop-filter: blur(50px) saturate(1.8) brightness(0.95);
+  border: 1px solid rgba(192, 192, 192, 0.10);
+  border-top-color: rgba(255, 255, 255, 0.06);
   box-shadow:
-    0 0 0 1px rgba(255,220,200,0.04) inset,
-    0 1px 0 rgba(230,210,195,0.12) inset,
-    0 24px 80px rgba(0,0,0,0.85);
+    0 0 0 1px rgba(255,255,255,0.02) inset,
+    0 1px 0 rgba(255,255,255,0.03) inset,
+    0 25px 50px -12px rgba(0,0,0,0.8);
 }
 
-/* ── Header ── */
+/* ── Header ── Liquid Crystal */
 body.theme-darkmode .header {
-  background: rgba(18, 8, 4, 0.75);
-  backdrop-filter: blur(70px) saturate(1.4);
-  -webkit-backdrop-filter: blur(70px) saturate(1.4);
-  border-bottom: 1px solid rgba(180, 155, 145, 0.08);
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(50px) saturate(1.6);
+  -webkit-backdrop-filter: blur(50px) saturate(1.6);
+  border-bottom: 1px solid rgba(192, 192, 192, 0.08);
 }
 
 body.theme-darkmode .header-title {
-  color: #e8dcd4;
-  font-weight: 700;
-  letter-spacing: -0.4px;
+  color: #e0e0e0;
+  font-weight: 600;
+  letter-spacing: -0.3px;
 }
-body.theme-darkmode .header-sub { color: #5a4a44; letter-spacing: 1.5px; }
+body.theme-darkmode .header-sub { color: #707070; letter-spacing: 1.2px; }
 
 body.theme-darkmode .theme-pill {
-  background: rgba(200, 168, 152, 0.08);
-  border: 1px solid rgba(180, 155, 145, 0.16);
-  color: #a89080;
-  box-shadow: 0 0 12px rgba(0,0,0,0.4), 0 1px 0 rgba(220,195,185,0.08) inset;
+  background: rgba(192, 192, 192, 0.06);
+  border: 1px solid rgba(192, 192, 192, 0.12);
+  color: #a8a8a8;
+  box-shadow: 0 0 12px rgba(0,0,0,0.4), 0 1px 0 rgba(255,255,255,0.03) inset;
 }
 
 .theme-dot.theme-darkmode-dot {
-  background: #a08070;
-  box-shadow: 0 0 6px rgba(160,128,112,0.5);
+  background: #c0c0c0;
+  box-shadow: 0 0 6px rgba(192,192,192,0.4);
 }
 
-/* ── Mixin: Crystal Card ──
-   All cards / containers share this crystal-clear glass look */
+/* ── Universal Liquid Crystal Card Effect ──
+   All cards, containers, banners, weather elements, dropdowns */
 body.theme-darkmode .settings-card,
 body.theme-darkmode .customer-banner,
 body.theme-darkmode .receipt-card,
@@ -1762,18 +1752,18 @@ body.theme-darkmode .forecast-row,
 body.theme-darkmode .weather-location-bar,
 body.theme-darkmode .dropdown,
 body.theme-darkmode .metric-card {
-  background: rgba(255, 215, 190, 0.030);
-  backdrop-filter: blur(60px) saturate(1.6) brightness(1.02);
-  -webkit-backdrop-filter: blur(60px) saturate(1.6) brightness(1.02);
-  border: 1px solid rgba(180, 158, 148, 0.13);
-  border-top-color: rgba(220, 200, 188, 0.22);
+  background: rgba(192, 192, 192, 0.035);
+  backdrop-filter: blur(40px) saturate(1.8) brightness(0.98);
+  -webkit-backdrop-filter: blur(40px) saturate(1.8) brightness(0.98);
+  border: 1px solid rgba(192, 192, 192, 0.10);
+  border-top-color: rgba(255, 255, 255, 0.05);
   box-shadow:
-    0 4px 30px rgba(0,0,0,0.60),
-    0 1px 0 rgba(225, 200, 185, 0.10) inset,
+    0 4px 20px rgba(0,0,0,0.6),
+    0 1px 0 rgba(255,255,255,0.02) inset,
     0 -1px 0 rgba(0,0,0,0.3) inset;
 }
 
-/* Shimmer edge on all cards */
+/* Shimmer edge on all cards - ultra subtle */
 body.theme-darkmode .settings-card::before,
 body.theme-darkmode .customer-banner::before,
 body.theme-darkmode .receipt-card::before,
@@ -1782,140 +1772,140 @@ body.theme-darkmode .weather-stat::before,
 body.theme-darkmode .forecast-row::before,
 body.theme-darkmode .weather-location-bar::before,
 body.theme-darkmode .metric-card::before {
-  background: linear-gradient(90deg, transparent 5%, rgba(220,195,180,0.10) 50%, transparent 95%);
+  background: linear-gradient(90deg, transparent 5%, rgba(255,255,255,0.04) 50%, transparent 95%);
 }
 
-/* ── Search Input ── */
+/* ── Search Input ── Liquid Crystal */
 body.theme-darkmode .search-input {
-  background: rgba(255, 210, 185, 0.030);
-  backdrop-filter: blur(60px) saturate(1.5);
-  -webkit-backdrop-filter: blur(60px) saturate(1.5);
-  border: 1px solid rgba(180, 155, 145, 0.13);
-  border-top-color: rgba(220, 195, 185, 0.20);
-  color: #e8dcd4;
-  box-shadow: 0 2px 20px rgba(0,0,0,0.55), 0 1px 0 rgba(225,200,185,0.08) inset;
+  background: rgba(192, 192, 192, 0.035);
+  backdrop-filter: blur(40px) saturate(1.6);
+  -webkit-backdrop-filter: blur(40px) saturate(1.6);
+  border: 1px solid rgba(192, 192, 192, 0.12);
+  border-top-color: rgba(255, 255, 255, 0.06);
+  color: #e0e0e0;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.5), 0 1px 0 rgba(255,255,255,0.02) inset;
 }
-body.theme-darkmode .search-input::placeholder { color: #4a3a34; }
+body.theme-darkmode .search-input::placeholder { color: #606060; }
 body.theme-darkmode .search-input:focus {
-  border-color: rgba(200, 175, 160, 0.25);
+  border-color: rgba(192, 192, 192, 0.25);
   box-shadow:
-    0 0 0 3px rgba(180, 155, 145, 0.08),
-    0 2px 20px rgba(0,0,0,0.55),
-    0 1px 0 rgba(225,200,185,0.10) inset;
-  background: rgba(255, 215, 192, 0.040);
+    0 0 0 3px rgba(192, 192, 192, 0.05),
+    0 2px 16px rgba(0,0,0,0.5),
+    0 1px 0 rgba(255,255,255,0.03) inset;
+  background: rgba(192, 192, 192, 0.05);
 }
-body.theme-darkmode .search-icon svg { stroke: #5a4a44; }
+body.theme-darkmode .search-icon svg { stroke: #707070; }
 body.theme-darkmode .clear-x {
-  background: rgba(180,155,145,0.08);
-  color: #6a5a54;
-  border: 1px solid rgba(180,155,145,0.10);
+  background: rgba(192,192,192,0.06);
+  color: #808080;
+  border: 1px solid rgba(192,192,192,0.08);
 }
 
-/* ── Dropdown ── */
+/* ── Dropdown ── Liquid Crystal */
 body.theme-darkmode .dropdown {
-  background: rgba(18, 8, 4, 0.88);
-  backdrop-filter: blur(80px) saturate(1.6);
-  -webkit-backdrop-filter: blur(80px) saturate(1.6);
-  box-shadow: 0 20px 60px rgba(0,0,0,0.80), 0 1px 0 rgba(220,195,180,0.08) inset;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(50px) saturate(1.8);
+  -webkit-backdrop-filter: blur(50px) saturate(1.8);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.7), 0 1px 0 rgba(255,255,255,0.03) inset;
 }
-body.theme-darkmode .dropdown-item { border-bottom-color: rgba(160,140,130,0.07); }
-body.theme-darkmode .dropdown-item:hover { background: rgba(200,175,160,0.06); }
-body.theme-darkmode .dropdown-name  { color: #e0d4cc; }
-body.theme-darkmode .dropdown-phone { color: #5a4a44; }
+body.theme-darkmode .dropdown-item { border-bottom-color: rgba(192,192,192,0.06); }
+body.theme-darkmode .dropdown-item:hover { background: rgba(192,192,192,0.05); }
+body.theme-darkmode .dropdown-name  { color: #d0d0d0; }
+body.theme-darkmode .dropdown-phone { color: #707070; }
 
 /* ── Customer Banner ── */
 body.theme-darkmode .customer-avatar {
-  background: rgba(200, 175, 160, 0.10);
-  color: #b8a498;
-  border: 1px solid rgba(180,158,148,0.16);
+  background: rgba(192, 192, 192, 0.08);
+  color: #a8a8a8;
+  border: 1px solid rgba(192,192,192,0.12);
 }
-body.theme-darkmode .customer-name   { color: #e8dcd4; }
-body.theme-darkmode .customer-detail { color: #7a6a64; }
+body.theme-darkmode .customer-name   { color: #e0e0e0; }
+body.theme-darkmode .customer-detail { color: #808080; }
 
-/* ── Metric Cards — uniform silver-grey, no color tints ── */
+/* ── Metric Cards ── All silver/grey, no color tints */
 body.theme-darkmode .metric-card--blue,
 body.theme-darkmode .metric-card--green,
 body.theme-darkmode .metric-card--amber,
 body.theme-darkmode .metric-card--purple {
-  background: rgba(255, 215, 190, 0.030);
-  border-color: rgba(180, 158, 148, 0.13);
+  background: rgba(192, 192, 192, 0.035);
+  border-color: rgba(192, 192, 192, 0.10);
 }
 
-body.theme-darkmode .metric-label { color: #5a4a44; }
-body.theme-darkmode .metric-value { color: #ddd0c8; font-size: 16px; }
-body.theme-darkmode .metric-sub   { color: #4a3a34; }
+body.theme-darkmode .metric-label { color: #707070; }
+body.theme-darkmode .metric-value { color: #d0d0d0; font-size: 16px; }
+body.theme-darkmode .metric-sub   { color: #606060; }
 
 /* ── Receipts ── */
 body.theme-darkmode .receipt-header {
-  background: rgba(255,210,185,0.015);
-  border-bottom-color: rgba(160,140,130,0.08);
+  background: rgba(192,192,192,0.02);
+  border-bottom-color: rgba(192,192,192,0.06);
 }
-body.theme-darkmode .receipt-store-name { color: #8a7a74; letter-spacing: 2px; font-size: 11px; }
-body.theme-darkmode .receipt-store-id   { color: #4a3a34; }
-body.theme-darkmode .receipt-date-label { color: #4a3a34; }
-body.theme-darkmode .receipt-date-value { color: #7a6a64; }
-body.theme-darkmode .receipt-items-header { color: #4a3a34; border-bottom-color: rgba(160,140,130,0.07); }
-body.theme-darkmode .receipt-item-name  { color: #c8bcb4; }
-body.theme-darkmode .receipt-item-qty   { color: #6a5a54; }
-body.theme-darkmode .receipt-item-price { color: #7a6a64; }
-body.theme-darkmode .receipt-divider    { border-top-color: rgba(160,140,130,0.07); }
-body.theme-darkmode .receipt-total-label  { color: #5a4a44; }
-body.theme-darkmode .receipt-total-amount { color: #e0d4cc; }
-body.theme-darkmode .receipt-status-row   { border-top-color: rgba(160,140,130,0.07); }
-body.theme-darkmode .receipt-status-label { color: #4a3a34; }
+body.theme-darkmode .receipt-store-name { color: #a0a0a0; letter-spacing: 2px; font-size: 11px; }
+body.theme-darkmode .receipt-store-id   { color: #606060; }
+body.theme-darkmode .receipt-date-label { color: #606060; }
+body.theme-darkmode .receipt-date-value { color: #808080; }
+body.theme-darkmode .receipt-items-header { color: #606060; border-bottom-color: rgba(192,192,192,0.06); }
+body.theme-darkmode .receipt-item-name  { color: #c8c8c8; }
+body.theme-darkmode .receipt-item-qty   { color: #808080; }
+body.theme-darkmode .receipt-item-price { color: #808080; }
+body.theme-darkmode .receipt-divider    { border-top-color: rgba(192,192,192,0.06); }
+body.theme-darkmode .receipt-total-label  { color: #707070; }
+body.theme-darkmode .receipt-total-amount { color: #d0d0d0; }
+body.theme-darkmode .receipt-status-row   { border-top-color: rgba(192,192,192,0.06); }
+body.theme-darkmode .receipt-status-label { color: #606060; }
 body.theme-darkmode .receipt-footer {
-  background: rgba(255,210,185,0.012);
-  border-top-color: rgba(160,140,130,0.07);
+  background: rgba(192,192,192,0.015);
+  border-top-color: rgba(192,192,192,0.06);
 }
-body.theme-darkmode .receipt-thankyou { color: #4a3a34; }
+body.theme-darkmode .receipt-thankyou { color: #606060; }
 
 body.theme-darkmode .badge-receipt--paid {
-  background: rgba(160,210,185,0.08);
-  color: #8ec8b0;
-  border: 1px solid rgba(160,210,185,0.14);
+  background: rgba(160,200,180,0.08);
+  color: #a0c0b0;
+  border: 1px solid rgba(160,200,180,0.12);
 }
 body.theme-darkmode .badge-receipt--pending {
-  background: rgba(210,185,140,0.08);
-  color: #c8a870;
-  border: 1px solid rgba(210,185,140,0.14);
+  background: rgba(200,180,140,0.08);
+  color: #b8a870;
+  border: 1px solid rgba(200,180,140,0.12);
 }
 
 /* ── Section / Count Pill ── */
-body.theme-darkmode .section-title { color: #4a3a34; }
+body.theme-darkmode .section-title { color: #606060; }
 body.theme-darkmode .count-pill {
-  background: rgba(180,158,148,0.10);
-  color: #9a8a84;
-  border: 1px solid rgba(180,158,148,0.14);
+  background: rgba(192,192,192,0.08);
+  color: #a0a0a0;
+  border: 1px solid rgba(192,192,192,0.10);
 }
 
-/* ── Weather ── */
-body.theme-darkmode .weather-location-name { color: #9a8a84; }
-body.theme-darkmode .weather-hero-temp      { color: #e8dcd4; }
-body.theme-darkmode .weather-hero-condition { color: #9a8a84; }
-body.theme-darkmode .weather-hero-feel      { color: #5a4a44; }
-body.theme-darkmode .weather-stat-val { color: #c8bcb4; }
-body.theme-darkmode .weather-stat-lbl { color: #4a3a34; }
-body.theme-darkmode .forecast-row:hover  { background: rgba(255,215,192,0.045); }
+/* ── Weather ── All silver text */
+body.theme-darkmode .weather-location-name { color: #a0a0a0; }
+body.theme-darkmode .weather-hero-temp      { color: #e0e0e0; }
+body.theme-darkmode .weather-hero-condition { color: #a0a0a0; }
+body.theme-darkmode .weather-hero-feel      { color: #707070; }
+body.theme-darkmode .weather-stat-val { color: #c8c8c8; }
+body.theme-darkmode .weather-stat-lbl { color: #606060; }
+body.theme-darkmode .forecast-row:hover  { background: rgba(192,192,192,0.045); }
 body.theme-darkmode .forecast-row--today {
-  border-color: rgba(200,175,160,0.22);
-  background: rgba(200,175,160,0.05);
+  border-color: rgba(192,192,192,0.20);
+  background: rgba(192,192,192,0.05);
 }
-body.theme-darkmode .forecast-day       { color: #a89890; }
-body.theme-darkmode .forecast-condition { color: #5a4a44; }
-body.theme-darkmode .forecast-max       { color: #ddd0c8; }
-body.theme-darkmode .forecast-min       { color: #4a3a34; }
-body.theme-darkmode .forecast-rain      { color: #5a4a44; }
+body.theme-darkmode .forecast-day       { color: #b0b0b0; }
+body.theme-darkmode .forecast-condition { color: #707070; }
+body.theme-darkmode .forecast-max       { color: #d0d0d0; }
+body.theme-darkmode .forecast-min       { color: #606060; }
+body.theme-darkmode .forecast-rain      { color: #707070; }
 body.theme-darkmode .weather-error button {
-  background: rgba(180,158,148,0.10);
-  color: #a89080;
-  border-color: rgba(180,158,148,0.20);
+  background: rgba(192,192,192,0.08);
+  color: #a8a8a8;
+  border-color: rgba(192,192,192,0.15);
 }
 
 /* ── Settings ── */
-body.theme-darkmode .settings-row { border-bottom-color: rgba(160,140,130,0.07); }
-body.theme-darkmode .settings-row--active { background: rgba(200,175,160,0.06); }
-body.theme-darkmode .settings-key { color: #7a6a64; }
-body.theme-darkmode .settings-val { color: #a89890; }
+body.theme-darkmode .settings-row { border-bottom-color: rgba(192,192,192,0.06); }
+body.theme-darkmode .settings-row--active { background: rgba(192,192,192,0.05); }
+body.theme-darkmode .settings-key { color: #808080; }
+body.theme-darkmode .settings-val { color: #b0b0b0; }
 
 /* ── Dark Mode Toggle in Settings ── */
 .settings-row--toggle { padding: 16px 18px; align-items: center; }
@@ -1935,18 +1925,18 @@ body.theme-darkmode .settings-val { color: #a89890; }
   padding-left: 24px;
   transition: color 0.3s ease;
 }
-body.theme-darkmode .settings-toggle-label { color: #9a8a84; }
-body.theme-darkmode .settings-toggle-label svg { stroke: #a89080; }
-body.theme-darkmode .settings-toggle-desc { color: #4a3a34; }
+body.theme-darkmode .settings-toggle-label { color: #a0a0a0; }
+body.theme-darkmode .settings-toggle-label svg { stroke: #a8a8a8; }
+body.theme-darkmode .settings-toggle-desc { color: #606060; }
 
-/* Toggle pill */
+/* Toggle pill - Silver/Crystal */
 .dm-toggle {
   position: relative;
   width: 52px;
   height: 28px;
   border-radius: 14px;
-  background: rgba(100,80,70,0.30);
-  border: 1px solid rgba(180,155,145,0.12);
+  background: rgba(80,80,80,0.25);
+  border: 1px solid rgba(192,192,192,0.12);
   cursor: pointer;
   transition: background 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
   flex-shrink: 0;
@@ -1954,54 +1944,54 @@ body.theme-darkmode .settings-toggle-desc { color: #4a3a34; }
   box-shadow: inset 0 1px 4px rgba(0,0,0,0.5);
 }
 .dm-toggle--on {
-  background: rgba(160,128,112,0.70);
-  border-color: rgba(200,175,160,0.25);
-  box-shadow: 0 0 16px rgba(160,128,112,0.25), inset 0 1px 0 rgba(255,220,200,0.15);
+  background: rgba(192,192,192,0.25);
+  border-color: rgba(192,192,192,0.25);
+  box-shadow: 0 0 12px rgba(192,192,192,0.15), inset 0 1px 0 rgba(255,255,255,0.05);
 }
 .dm-toggle-thumb {
   position: absolute;
   top: 3px; left: 3px;
   width: 20px; height: 20px;
   border-radius: 50%;
-  background: #c8b0a0;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.5), 0 1px 0 rgba(255,230,215,0.6) inset;
+  background: #a0a0a0;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.4), 0 1px 0 rgba(255,255,255,0.2) inset;
   transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 .dm-toggle--on .dm-toggle-thumb {
   transform: translateX(24px);
-  background: #e0c8b8;
-  box-shadow: 0 2px 10px rgba(160,128,112,0.4), 0 1px 0 rgba(255,235,220,0.8) inset;
+  background: #d0d0d0;
+  box-shadow: 0 2px 8px rgba(192,192,192,0.3), 0 1px 0 rgba(255,255,255,0.3) inset;
 }
 
-/* ── Bottom Nav ── */
+/* ── Bottom Nav ── Liquid Crystal */
 body.theme-darkmode .bottom-nav {
-  background: rgba(10, 4, 2, 0.92);
-  border-top: 1px solid rgba(160,140,130,0.07);
-  backdrop-filter: blur(70px) saturate(1.5);
-  -webkit-backdrop-filter: blur(70px) saturate(1.5);
-  box-shadow: 0 -1px 0 rgba(220,195,180,0.05) inset, 0 -20px 40px rgba(0,0,0,0.5);
+  background: rgba(0, 0, 0, 0.92);
+  border-top: 1px solid rgba(192,192,192,0.06);
+  backdrop-filter: blur(50px) saturate(1.6);
+  -webkit-backdrop-filter: blur(50px) saturate(1.6);
+  box-shadow: 0 -1px 0 rgba(255,255,255,0.02) inset, 0 -20px 40px rgba(0,0,0,0.5);
 }
-body.theme-darkmode .nav-btn { color: #4a3a34; }
-body.theme-darkmode .nav-btn:hover { background: rgba(180,155,145,0.07); }
+body.theme-darkmode .nav-btn { color: #606060; }
+body.theme-darkmode .nav-btn:hover { background: rgba(192,192,192,0.06); }
 body.theme-darkmode .nav-btn--active {
-  background: rgba(180,155,145,0.12);
-  color: #c8b0a0;
+  background: rgba(192,192,192,0.10);
+  color: #c0c0c0;
 }
-body.theme-darkmode .nav-btn--active .nav-icon-svg { stroke: #c8b0a0; }
+body.theme-darkmode .nav-btn--active .nav-icon-svg { stroke: #c0c0c0; }
 
-/* ── Empty / Welcome States ── */
-body.theme-darkmode .welcome-state h3 { color: #5a4a44; }
-body.theme-darkmode .welcome-state p  { color: #3a2a24; }
-body.theme-darkmode .welcome-icon svg { stroke: #2a1a14; }
-body.theme-darkmode .empty-state p    { color: #3a2a24; }
-body.theme-darkmode .empty-icon svg   { stroke: #2a1a14; }
-body.theme-darkmode .loader-text { color: #4a3a34; }
+/* ── Empty / Welcome States ── Silver text */
+body.theme-darkmode .welcome-state h3 { color: #808080; }
+body.theme-darkmode .welcome-state p  { color: #606060; }
+body.theme-darkmode .welcome-icon svg { stroke: #505050; }
+body.theme-darkmode .empty-state p    { color: #606060; }
+body.theme-darkmode .empty-icon svg   { stroke: #505050; }
+body.theme-darkmode .loader-text { color: #707070; }
 
 /* ── Scrollbar ── */
-body.theme-darkmode .tab-content::-webkit-scrollbar-thumb { background: rgba(160,140,130,0.08); }
+body.theme-darkmode .tab-content::-webkit-scrollbar-thumb { background: rgba(192,192,192,0.08); }
 
 /* ============================================================
-   DARK MODE LOADER — Rotating glow orb (replaces cube)
+   DARK MODE LOADER — Silver/Liquid Crystal rotating orb
    ============================================================ */
 .dm-loader-wrap {
   display: flex;
@@ -2012,13 +2002,13 @@ body.theme-darkmode .tab-content::-webkit-scrollbar-thumb { background: rgba(160
   position: relative;
   width: 120px;
   height: 120px;
-  border: 3px solid #1e1008;
+  border: 3px solid rgba(192,192,192,0.10);
   overflow: hidden;
   border-radius: 50%;
   box-shadow:
-    -4px -4px 5px rgba(255,200,160,0.06),
+    -4px -4px 5px rgba(255,255,255,0.02),
     8px 8px 10px rgba(0,0,0,0.6),
-    inset -4px -4px 5px rgba(255,200,160,0.08),
+    inset -4px -4px 5px rgba(255,255,255,0.02),
     inset 8px 8px 10px rgba(0,0,0,0.5);
 }
 .dm-loader::before {
@@ -2026,18 +2016,18 @@ body.theme-darkmode .tab-content::-webkit-scrollbar-thumb { background: rgba(160
   position: absolute;
   top: 20px; left: 20px; right: 20px; bottom: 20px;
   z-index: 10;
-  background: #100800;
+  background: #000000;
   border-radius: 50%;
-  border: 2px solid #1a0d04;
+  border: 2px solid rgba(192,192,192,0.08);
   box-shadow:
-    inset -2px -2px 5px rgba(255,200,160,0.10),
+    inset -2px -2px 5px rgba(255,255,255,0.02),
     inset 3px 3px 5px rgba(0,0,0,0.6);
 }
 .dm-loader span {
   position: absolute;
   width: 100%; height: 100%;
   border-radius: 50%;
-  background-image: linear-gradient(-225deg, #ff7402 0%, #ffe700 50%, #fff55e 100%);
+  background-image: linear-gradient(-225deg, #a0a0a0 0%, #d0d0d0 50%, #e8e8e8 100%);
   filter: blur(18px);
   z-index: -1;
   animation: dmSpin 0.5s linear infinite, dmHue 3s linear infinite;
