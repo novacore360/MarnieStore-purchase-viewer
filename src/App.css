@@ -1971,13 +1971,61 @@ body.theme-darkmode .bottom-nav {
   -webkit-backdrop-filter: blur(50px) saturate(1.6);
   box-shadow: 0 -1px 0 rgba(255,255,255,0.02) inset, 0 -20px 40px rgba(0,0,0,0.5);
 }
-body.theme-darkmode .nav-btn { color: #606060; }
-body.theme-darkmode .nav-btn:hover { background: rgba(192,192,192,0.06); }
-body.theme-darkmode .nav-btn--active {
-  background: rgba(192,192,192,0.10);
-  color: #c0c0c0;
+
+body.theme-darkmode .nav-btn { 
+  color: #606060; 
+  transition: all 0.2s ease;
 }
 
+body.theme-darkmode .nav-btn:hover { 
+  background: rgba(192,192,192,0.06); 
+}
+
+body.theme-darkmode .nav-btn--active {
+  background: rgba(192,192,192,0.12);
+  color: #e0e0e0;
+}
+
+/* STRONGER GLOW for active nav icon - 3 layers for max visibility */
+body.theme-darkmode .nav-btn--active .nav-icon-svg {
+  stroke: #ffffff;
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.9)) 
+          drop-shadow(0 0 4px rgba(255, 255, 255, 0.6))
+          drop-shadow(0 0 2px rgba(255, 255, 255, 0.8));
+  transition: filter 0.2s ease;
+}
+
+/* Glow on hover for all nav icons */
+body.theme-darkmode .nav-btn:hover .nav-icon-svg {
+  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.5));
+}
+
+/* Make icons slightly thicker for better visibility */
+body.theme-darkmode .nav-icon-svg {
+  stroke-width: 2.2;
+}
+
+/* Add glow to the active label text as well */
+body.theme-darkmode .nav-btn--active .nav-label {
+  text-shadow: 0 0 4px rgba(255, 255, 255, 0.5);
+  color: #e0e0e0;
+}
+
+/* For sunset/dusk/night themes - same strong glow */
+body.theme-sunset .nav-btn--active .nav-icon-svg,
+body.theme-dusk .nav-btn--active .nav-icon-svg,
+body.theme-night .nav-btn--active .nav-icon-svg {
+  stroke: #ffffff;
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.9)) 
+          drop-shadow(0 0 4px rgba(255, 255, 255, 0.5));
+}
+
+body.theme-sunset .nav-btn--active .nav-label,
+body.theme-dusk .nav-btn--active .nav-label,
+body.theme-night .nav-btn--active .nav-label {
+  text-shadow: 0 0 4px rgba(255, 255, 255, 0.5);
+  color: #e0e0e0;
+}
 
 /* ── Empty / Welcome States ── Silver text */
 body.theme-darkmode .welcome-state h3 { color: #808080; }
@@ -1986,32 +2034,6 @@ body.theme-darkmode .welcome-icon svg { stroke: #505050; }
 body.theme-darkmode .empty-state p    { color: #606060; }
 body.theme-darkmode .empty-icon svg   { stroke: #505050; }
 body.theme-darkmode .loader-text { color: #707070; }
-body.theme-darkmode .nav-btn--active .nav-icon-svg {
-  stroke: #c0c0c0;
-  filter: drop-shadow(0 0 4px rgba(192, 192, 192, 0.6));
-  transition: filter 0.2s ease;
-}
-/* Add this anywhere in the dark mode section */
-body.theme-darkmode .nav-btn:hover .nav-icon-svg {
-  filter: drop-shadow(0 0 3px rgba(192, 192, 192, 0.4));
-}
-
-body.theme-darkmode .nav-btn--active .nav-icon-svg {
-  filter: drop-shadow(0 0 5px rgba(192, 192, 192, 0.7));
-}
-
-/* Glowing icons for dark mode navigation */
-body.theme-sunset .nav-btn--active .nav-icon-svg,
-body.theme-dusk .nav-btn--active .nav-icon-svg,
-body.theme-night .nav-btn--active .nav-icon-svg {
-  filter: drop-shadow(0 0 4px currentColor);
-}
-
-body.theme-sunset .nav-btn--active,
-body.theme-dusk .nav-btn--active,
-body.theme-night .nav-btn--active {
-  text-shadow: 0 0 4px currentColor;
-}
 /* ── Scrollbar ── */
 body.theme-darkmode .tab-content::-webkit-scrollbar-thumb { background: rgba(192,192,192,0.08); }
 
