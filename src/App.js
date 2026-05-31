@@ -1,4 +1,4 @@
-/* App.js - Updated version */
+/* App.js - Updated version (Customer Overview removed) */
 import React, { useState, useEffect, useCallback } from 'react';
 import { db } from './firebase';
 import { collection, getDocs } from 'firebase/firestore';
@@ -200,7 +200,6 @@ function App() {
   const paidCount     = customerPurchases.filter(p => p.status === 'paid').length;
   const avgOrder      = customerPurchases.length ? totalSpent / customerPurchases.length : 0;
 
-  // Customer overview stats (replaces store overview)
   const totalCustomers = customers.length;
 
   const formatDate = (ds) => {
@@ -245,41 +244,6 @@ function App() {
           {/* ── DASHBOARD TAB ── */}
           {activeTab === 'dashboard' && (
             <div className="page">
-              {/* Customer Overview Stats - Replaces Store Overview */}
-              <section className="section">
-                <h2 className="section-title">Customer Overview</h2>
-                <div className="stat-row">
-                  <div className="stat-chip stat-chip--blue">
-                    <span className="stat-chip-icon">👥</span>
-                    <div>
-                      <div className="stat-chip-val">{totalCustomers}</div>
-                      <div className="stat-chip-lbl">Total Customers</div>
-                    </div>
-                  </div>
-                  <div className="stat-chip stat-chip--green">
-                    <span className="stat-chip-icon">✅</span>
-                    <div>
-                      <div className="stat-chip-val">{selectedCustomer ? paidCount : '-'}</div>
-                      <div className="stat-chip-lbl">Paid Orders</div>
-                    </div>
-                  </div>
-                  <div className="stat-chip stat-chip--amber">
-                    <span className="stat-chip-icon">⏳</span>
-                    <div>
-                      <div className="stat-chip-val">{selectedCustomer ? pendingCount : '-'}</div>
-                      <div className="stat-chip-lbl">Pending Orders</div>
-                    </div>
-                  </div>
-                  <div className="stat-chip stat-chip--purple">
-                    <span className="stat-chip-icon">📊</span>
-                    <div>
-                      <div className="stat-chip-val">{selectedCustomer ? customerPurchases.length : '-'}</div>
-                      <div className="stat-chip-lbl">Total Orders</div>
-                    </div>
-                  </div>
-                </div>
-              </section>
-
               {/* Customer Search */}
               <section className="section">
                 <h2 className="section-title">Customer Lookup</h2>
