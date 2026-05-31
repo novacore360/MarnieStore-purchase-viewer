@@ -1,0 +1,41 @@
+{
+  "short_name": "Marnie Store",
+  "name": "Marnie Store - Customer Purchase Viewer",
+  "description": "View customer purchase history and manage transactions",
+  "icons": [
+    {
+      "src": "logo192.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "logo512.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any maskable"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#4e73df",
+  "background_color": "#ffffff",
+  "orientation": "portrait-primary",
+  "categories": ["business", "productivity", "shopping"],
+  "shortcuts": [
+    {
+      "name": "My Purchase",
+      "short_name": "Purchase",
+      "description": "View customer purchases",
+      "url": "/?tab=purchase",
+      "icons": [{ "src": "logo192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Dashboard",
+      "short_name": "Dashboard",
+      "description": "View statistics",
+      "url": "/?tab=dashboard",
+      "icons": [{ "src": "logo192.png", "sizes": "192x192" }]
+    }
+  ]
+}
