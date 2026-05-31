@@ -1,4 +1,4 @@
-/* App.js - Updated with Hamster Loading Animation (keeping getDocs) */
+/* App.js - Updated with 8 Time-Based Themes and Hamster Loading Animation */
 import React, { useState, useEffect, useCallback } from 'react';
 import { db } from './firebase';
 import { collection, getDocs } from 'firebase/firestore';
@@ -56,18 +56,36 @@ function App() {
   const [weatherError, setWeatherError] = useState(null);
   const [forecast, setForecast] = useState([]);
 
-  // ── Theme based on time ──────────────────────────────────────────────────
+  // ── Theme based on time (8 themes with smooth transitions) ─────────────────
   useEffect(() => {
     const updateTheme = () => {
       const h = new Date().getHours();
-      if (h >= 5 && h < 8) setTheme('dawn');
-      else if (h >= 8 && h < 17) setTheme('morning');
-      else if (h >= 17 && h < 19) setTheme('sunset');
-      else setTheme('night');
+      const m = new Date().getMinutes();
+      const hourDecimal = h + m / 60;
+      
+      // 8 time-based themes
+      if (hourDecimal >= 4.0 && hourDecimal < 6.0) {
+        setTheme('dawn');        // 4:00 AM - 6:00 AM
+      } else if (hourDecimal >= 6.0 && hourDecimal < 8.0) {
+        setTheme('sunrise');     // 6:00 AM - 8:00 AM
+      } else if (hourDecimal >= 8.0 && hourDecimal < 11.0) {
+        setTheme('morning');     // 8:00 AM - 11:00 AM
+      } else if (hourDecimal >= 11.0 && hourDecimal < 13.0) {
+        setTheme('noon');        // 11:00 AM - 1:00 PM
+      } else if (hourDecimal >= 13.0 && hourDecimal < 16.0) {
+        setTheme('golden');      // 1:00 PM - 4:00 PM (Golden Hour)
+      } else if (hourDecimal >= 16.0 && hourDecimal < 18.5) {
+        setTheme('sunset');      // 4:00 PM - 6:30 PM
+      } else if (hourDecimal >= 18.5 && hourDecimal < 20.0) {
+        setTheme('dusk');        // 6:30 PM - 8:00 PM
+      } else {
+        setTheme('night');       // 8:00 PM - 4:00 AM
+      }
     };
+    
     updateTheme();
-    const t = setInterval(updateTheme, 60000);
-    return () => clearInterval(t);
+    const interval = setInterval(updateTheme, 60000); // Check every minute
+    return () => clearInterval(interval);
   }, []);
 
   useEffect(() => {
@@ -221,7 +239,19 @@ function App() {
     return d.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
   };
 
-  const getThemeName = () => ({ dawn: 'Sunrise', morning: 'Morning', sunset: 'Sunset', night: 'Night' }[theme] || 'Morning');
+  const getThemeName = () => {
+    const themes = {
+      dawn: 'Dawn 🌅',
+      sunrise: 'Sunrise ☀️',
+      morning: 'Morning 🌤️',
+      noon: 'Noon 🔆',
+      golden: 'Golden Hour ✨',
+      sunset: 'Sunset 🌇',
+      dusk: 'Dusk 🌙',
+      night: 'Night ⭐'
+    };
+    return themes[theme] || 'Morning';
+  };
 
   // SVG Icons for Navigation
   const NavIcons = {
@@ -535,10 +565,14 @@ function App() {
                 <h2 className="section-title">Theme Schedule</h2>
                 <div className="settings-card">
                   {[
-                    { icon: '🌅', name: 'Sunrise', time: '5:00 – 8:00 AM', key: 'dawn' },
-                    { icon: '☀️', name: 'Morning', time: '8:00 AM – 5:00 PM', key: 'morning' },
-                    { icon: '🌇', name: 'Sunset', time: '5:00 – 7:00 PM', key: 'sunset' },
-                    { icon: '🌙', name: 'Night', time: '7:00 PM – 5:00 AM', key: 'night' },
+                    { icon: '🌅', name: 'Dawn', time: '4:00 – 6:00 AM', key: 'dawn' },
+                    { icon: '☀️', name: 'Sunrise', time: '6:00 – 8:00 AM', key: 'sunrise' },
+                    { icon: '🌤️', name: 'Morning', time: '8:00 – 11:00 AM', key: 'morning' },
+                    { icon: '🔆', name: 'Noon', time: '11:00 AM – 1:00 PM', key: 'noon' },
+                    { icon: '✨', name: 'Golden Hour', time: '1:00 – 4:00 PM', key: 'golden' },
+                    { icon: '🌇', name: 'Sunset', time: '4:00 – 6:30 PM', key: 'sunset' },
+                    { icon: '🌙', name: 'Dusk', time: '6:30 – 8:00 PM', key: 'dusk' },
+                    { icon: '⭐', name: 'Night', time: '8:00 PM – 4:00 AM', key: 'night' },
                   ].map(t => (
                     <div key={t.key} className={`settings-row ${theme === t.key ? 'settings-row--active' : ''}`}>
                       <span className="settings-key">{t.icon} {t.name}</span>
