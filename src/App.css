@@ -1,4 +1,4 @@
-/* App.css - Updated with 8 time-based themes and smooth transitions */
+/* App.css - Updated with Scenic Background Images for each time of day */
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300&family=DM+Mono:wght@400;500&display=swap');
 
 /* ============================================================
@@ -26,12 +26,12 @@ body {
 }
 
 /* ============================================================
-   THEMES - 8 Time-based Themes with Smooth Transitions
+   THEMES - Scenic Background Images for Each Time of Day
    ============================================================ */
 
-/* Dawn (4:00 AM - 6:00 AM) - Soft pastel awakening */
+/* Dawn (4:00 AM - 6:00 AM) - Soft pastel awakening with morning mist */
 .theme-dawn {
-  --bg: linear-gradient(180deg, #e0eafc 0%, #cfdef3 50%, #ffafbd 100%);
+  --bg-image: url('https://images.pexels.com/photos/1029624/dawn-morning-sunrise-sun-1029624.jpg?auto=compress&cs=tinysrgb&w=1600');
   --glass-bg: rgba(255, 248, 245, 0.7);
   --glass-border: rgba(255, 220, 200, 0.5);
   --glass-shadow: 0 20px 60px rgba(100, 80, 120, 0.15);
@@ -62,9 +62,9 @@ body {
   --receipt-stripe: rgba(0, 0, 0, 0.02);
 }
 
-/* Sunrise (6:00 AM - 8:00 AM) - Golden morning glow */
+/* Sunrise (6:00 AM - 8:00 AM) - Golden morning glow over landscape */
 .theme-sunrise {
-  --bg: linear-gradient(90deg, #fff5e6 0%, #ffe0b2 50%, #ffcc80 100%);
+  --bg-image: url('https://images.pexels.com/photos/1162251/beach-sunrise-sun-sunlight-1162251.jpg?auto=compress&cs=tinysrgb&w=1600');
   --glass-bg: rgba(255, 245, 230, 0.7);
   --glass-border: rgba(255, 200, 120, 0.5);
   --glass-shadow: 0 20px 60px rgba(200, 100, 30, 0.12);
@@ -95,9 +95,9 @@ body {
   --receipt-stripe: rgba(0, 0, 0, 0.02);
 }
 
-/* Morning (8:00 AM - 11:00 AM) - Fresh and vibrant */
+/* Morning (8:00 AM - 11:00 AM) - Fresh green landscape with blue sky */
 .theme-morning {
-  --bg: linear-gradient(180deg, #87CEEB 0%, #98D8E8 50%, #B0E0E6 100%);
+  --bg-image: url('https://images.pexels.com/photos/158827/field-corn-agriculture-farm-158827.jpg?auto=compress&cs=tinysrgb&w=1600');
   --glass-bg: rgba(255, 255, 255, 0.7);
   --glass-border: rgba(135, 206, 235, 0.5);
   --glass-shadow: 0 20px 60px rgba(100, 140, 200, 0.12);
@@ -128,9 +128,9 @@ body {
   --receipt-stripe: rgba(0, 0, 0, 0.02);
 }
 
-/* Noon (11:00 AM - 1:00 PM) - Bright and radiant */
+/* Noon (11:00 AM - 1:00 PM) - Bright sunny tropical landscape */
 .theme-noon {
-  --bg: radial-gradient(circle, #fff9e6 0%, #ffe4b5 50%, #ffd700 100%);
+  --bg-image: url('https://images.pexels.com/photos/268415/pexels-photo-268415.jpeg?auto=compress&cs=tinysrgb&w=1600');
   --glass-bg: rgba(255, 250, 235, 0.75);
   --glass-border: rgba(255, 215, 100, 0.5);
   --glass-shadow: 0 20px 60px rgba(180, 120, 20, 0.12);
@@ -161,9 +161,9 @@ body {
   --receipt-stripe: rgba(0, 0, 0, 0.02);
 }
 
-/* Golden Hour (1:00 PM - 4:00 PM) - Rich warm tones */
+/* Golden Hour (1:00 PM - 4:00 PM) - Rich warm golden landscape */
 .theme-golden {
-  --bg: linear-gradient(45deg, #fceabb 0%, #f8b500 50%, #ffd89b 100%);
+  --bg-image: url('https://images.pexels.com/photos/1261728/field-sunset-sun-rays-golden-hour-1261728.jpg?auto=compress&cs=tinysrgb&w=1600');
   --glass-bg: rgba(255, 245, 220, 0.7);
   --glass-border: rgba(248, 181, 0, 0.45);
   --glass-shadow: 0 20px 60px rgba(180, 100, 10, 0.14);
@@ -194,9 +194,9 @@ body {
   --receipt-stripe: rgba(0, 0, 0, 0.02);
 }
 
-/* Sunset (5:00 PM - 6:30 PM) - Dramatic dusk colors */
+/* Sunset (5:00 PM - 6:30 PM) - Dramatic sunset over ocean/mountains */
 .theme-sunset {
-  --bg: linear-gradient(180deg, #7f4f24 0%, #e09f3e 50%, #ffb347 100%);
+  --bg-image: url('https://images.pexels.com/photos/189349/sunset-beach-sand-ocean-189349.jpeg?auto=compress&cs=tinysrgb&w=1600');
   --glass-bg: rgba(45, 30, 20, 0.75);
   --glass-border: rgba(224, 159, 62, 0.5);
   --glass-shadow: 0 20px 60px rgba(100, 50, 20, 0.25);
@@ -227,9 +227,9 @@ body {
   --receipt-stripe: rgba(255, 255, 255, 0.03);
 }
 
-/* Dusk (6:30 PM - 8:00 PM) - Transition to night */
+/* Dusk (6:30 PM - 8:00 PM) - Twilight purple/blue transition */
 .theme-dusk {
-  --bg: linear-gradient(135deg, #2c1a4a 0%, #4a2c6a 50%, #6b4c8a 100%);
+  --bg-image: url('https://images.pexels.com/photos/1169754/fall-sunset-sky-sun-1169754.jpg?auto=compress&cs=tinysrgb&w=1600');
   --glass-bg: rgba(30, 20, 50, 0.8);
   --glass-border: rgba(100, 70, 140, 0.4);
   --glass-shadow: 0 20px 60px rgba(20, 10, 40, 0.4);
@@ -260,9 +260,9 @@ body {
   --receipt-stripe: rgba(255, 255, 255, 0.03);
 }
 
-/* Night (8:00 PM - 4:00 AM) - Deep dark with stars */
+/* Night (8:00 PM - 4:00 AM) - Starry night sky */
 .theme-night {
-  --bg: linear-gradient(135deg, #0a0a2a 0%, #141432 30%, #1a1a3a 70%, #0f0f2a 100%);
+  --bg-image: url('https://images.pexels.com/photos/1252890/star-sky-night-silhouette-1252890.jpg?auto=compress&cs=tinysrgb&w=1600');
   --glass-bg: rgba(15, 20, 40, 0.85);
   --glass-border: rgba(80, 100, 160, 0.3);
   --glass-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
@@ -293,45 +293,37 @@ body {
   --receipt-stripe: rgba(255, 255, 255, 0.03);
 }
 
-/* Stars animation for night theme */
-.theme-night .glass-container::before {
+/* Scenic Background Application */
+body {
+  background: var(--bg-image) center/cover no-repeat fixed;
+  color: var(--text-primary);
+  transition: background 0.8s cubic-bezier(0.4, 0, 0.2, 1), color 0.4s ease;
+  position: relative;
+}
+
+/* Add overlay to ensure text readability */
+body::before {
   content: '';
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
+  background: rgba(0, 0, 0, 0.3);
   pointer-events: none;
-  background-image: 
-    radial-gradient(2px 2px at 15% 20%, white, rgba(0,0,0,0)),
-    radial-gradient(1px 1px at 85% 45%, white, rgba(0,0,0,0)),
-    radial-gradient(1.5px 1.5px at 45% 75%, white, rgba(0,0,0,0)),
-    radial-gradient(2px 2px at 92% 15%, white, rgba(0,0,0,0)),
-    radial-gradient(1px 1px at 30% 90%, white, rgba(0,0,0,0)),
-    radial-gradient(1.5px 1.5px at 70% 30%, white, rgba(0,0,0,0)),
-    radial-gradient(1px 1px at 50% 50%, white, rgba(0,0,0,0)),
-    radial-gradient(2px 2px at 8% 65%, white, rgba(0,0,0,0)),
-    radial-gradient(1px 1px at 60% 88%, white, rgba(0,0,0,0)),
-    radial-gradient(1.5px 1.5px at 40% 12%, white, rgba(0,0,0,0));
-  background-size: 200px 200px;
-  background-repeat: no-repeat;
-  opacity: 0.6;
-  animation: twinkle 3s ease-in-out infinite alternate;
+  z-index: -1;
 }
 
-@keyframes twinkle {
-  0% { opacity: 0.3; }
-  100% { opacity: 0.8; }
+/* Dark themes get darker overlay for better text contrast */
+.theme-sunset::before,
+.theme-dusk::before,
+.theme-night::before {
+  background: rgba(0, 0, 0, 0.5);
 }
 
 /* ============================================================
    APP SHELL - Smooth transitions for all themed elements
    ============================================================ */
-body { 
-  background: var(--bg); 
-  color: var(--text-primary);
-  transition: background 0.8s cubic-bezier(0.4, 0, 0.2, 1), color 0.4s ease;
-}
 
 .app {
   position: fixed;
