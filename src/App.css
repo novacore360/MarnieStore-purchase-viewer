@@ -1,4 +1,4 @@
-/* App.css - Complete with Full Screen Scenic Background Images */
+/* App.css - Complete with Scenic Background Images for each time of day */
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300&family=DM+Mono:wght@400;500&display=swap');
 
 /* ============================================================
@@ -10,32 +10,30 @@
   box-sizing: border-box;
 }
 
-html {
-  scroll-behavior: smooth;
-  height: 100%;
-}
+html { scroll-behavior: smooth; }
 
 body {
   font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
   min-height: 100vh;
-  transition: background-image 0.8s cubic-bezier(0.4, 0, 0.2, 1), color 0.4s ease;
+  transition: background 0.8s cubic-bezier(0.4, 0, 0.2, 1), color 0.4s ease;
   -webkit-font-smoothing: antialiased;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
   margin: 0;
   padding: 0;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  overflow-x: hidden;
 }
 
 /* ============================================================
-   FULL SCREEN THEMES - Scenic Background Images
+   THEMES - Scenic Background Images for Each Time of Day
    ============================================================ */
 
-/* Dawn (4:00 AM - 6:00 AM) */
-body.theme-dawn {
-  background-image: url('https://images.pexels.com/photos/1029624/dawn-morning-sunrise-sun-1029624.jpg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop');
+/* Dawn (4:00 AM - 6:00 AM) - Soft pastel awakening with morning mist */
+.theme-dawn {
+  --bg-image: url('https://images.pexels.com/photos/1029624/dawn-morning-sunrise-sun-1029624.jpg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop');
   --glass-bg: rgba(255, 248, 245, 0.75);
   --glass-border: rgba(255, 220, 200, 0.5);
   --glass-shadow: 0 20px 60px rgba(100, 80, 120, 0.15);
@@ -66,9 +64,9 @@ body.theme-dawn {
   --receipt-stripe: rgba(0, 0, 0, 0.02);
 }
 
-/* Sunrise (6:00 AM - 8:00 AM) */
-body.theme-sunrise {
-  background-image: url('https://images.pexels.com/photos/1162251/beach-sunrise-sun-sunlight-1162251.jpg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop');
+/* Sunrise (6:00 AM - 8:00 AM) - Golden morning glow over landscape */
+.theme-sunrise {
+  --bg-image: url('https://images.pexels.com/photos/1162251/beach-sunrise-sun-sunlight-1162251.jpg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop');
   --glass-bg: rgba(255, 245, 230, 0.75);
   --glass-border: rgba(255, 200, 120, 0.5);
   --glass-shadow: 0 20px 60px rgba(200, 100, 30, 0.12);
@@ -99,9 +97,9 @@ body.theme-sunrise {
   --receipt-stripe: rgba(0, 0, 0, 0.02);
 }
 
-/* Morning (8:00 AM - 11:00 AM) */
-body.theme-morning {
-  background-image: url('https://images.pexels.com/photos/158827/field-corn-agriculture-farm-158827.jpg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop');
+/* Morning (8:00 AM - 11:00 AM) - Fresh green landscape with blue sky */
+.theme-morning {
+  --bg-image: url('https://images.pexels.com/photos/158827/field-corn-agriculture-farm-158827.jpg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop');
   --glass-bg: rgba(255, 255, 255, 0.75);
   --glass-border: rgba(135, 206, 235, 0.5);
   --glass-shadow: 0 20px 60px rgba(100, 140, 200, 0.12);
@@ -132,9 +130,9 @@ body.theme-morning {
   --receipt-stripe: rgba(0, 0, 0, 0.02);
 }
 
-/* Noon (11:00 AM - 1:00 PM) */
-body.theme-noon {
-  background-image: url('https://images.pexels.com/photos/268415/pexels-photo-268415.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop');
+/* Noon (11:00 AM - 1:00 PM) - Bright sunny tropical landscape */
+.theme-noon {
+  --bg-image: url('https://images.pexels.com/photos/268415/pexels-photo-268415.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop');
   --glass-bg: rgba(255, 250, 235, 0.8);
   --glass-border: rgba(255, 215, 100, 0.5);
   --glass-shadow: 0 20px 60px rgba(180, 120, 20, 0.12);
@@ -165,9 +163,9 @@ body.theme-noon {
   --receipt-stripe: rgba(0, 0, 0, 0.02);
 }
 
-/* Golden Hour (1:00 PM - 4:00 PM) */
-body.theme-golden {
-  background-image: url('https://images.pexels.com/photos/1261728/field-sunset-sun-rays-golden-hour-1261728.jpg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop');
+/* Golden Hour (1:00 PM - 4:00 PM) - Rich warm golden landscape */
+.theme-golden {
+  --bg-image: url('https://images.pexels.com/photos/1261728/field-sunset-sun-rays-golden-hour-1261728.jpg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop');
   --glass-bg: rgba(255, 245, 220, 0.75);
   --glass-border: rgba(248, 181, 0, 0.5);
   --glass-shadow: 0 20px 60px rgba(180, 100, 10, 0.14);
@@ -198,9 +196,9 @@ body.theme-golden {
   --receipt-stripe: rgba(0, 0, 0, 0.02);
 }
 
-/* Sunset (5:00 PM - 6:30 PM) */
-body.theme-sunset {
-  background-image: url('https://images.pexels.com/photos/189349/sunset-beach-sand-ocean-189349.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop');
+/* Sunset (5:00 PM - 6:30 PM) - Dramatic sunset over ocean/mountains */
+.theme-sunset {
+  --bg-image: url('https://images.pexels.com/photos/189349/sunset-beach-sand-ocean-189349.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop');
   --glass-bg: rgba(45, 30, 20, 0.8);
   --glass-border: rgba(224, 159, 62, 0.5);
   --glass-shadow: 0 20px 60px rgba(100, 50, 20, 0.25);
@@ -231,9 +229,9 @@ body.theme-sunset {
   --receipt-stripe: rgba(255, 255, 255, 0.05);
 }
 
-/* Dusk (6:30 PM - 8:00 PM) */
-body.theme-dusk {
-  background-image: url('https://images.pexels.com/photos/1169754/fall-sunset-sky-sun-1169754.jpg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop');
+/* Dusk (6:30 PM - 8:00 PM) - Twilight purple/blue transition */
+.theme-dusk {
+  --bg-image: url('https://images.pexels.com/photos/1169754/fall-sunset-sky-sun-1169754.jpg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop');
   --glass-bg: rgba(30, 20, 50, 0.85);
   --glass-border: rgba(100, 70, 140, 0.4);
   --glass-shadow: 0 20px 60px rgba(20, 10, 40, 0.4);
@@ -264,9 +262,9 @@ body.theme-dusk {
   --receipt-stripe: rgba(255, 255, 255, 0.05);
 }
 
-/* Night (8:00 PM - 4:00 AM) */
-body.theme-night {
-  background-image: url('https://images.pexels.com/photos/1252890/star-sky-night-silhouette-1252890.jpg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop');
+/* Night (8:00 PM - 4:00 AM) - Starry night sky */
+.theme-night {
+  --bg-image: url('https://images.pexels.com/photos/1252890/star-sky-night-silhouette-1252890.jpg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop');
   --glass-bg: rgba(15, 20, 40, 0.9);
   --glass-border: rgba(80, 100, 160, 0.3);
   --glass-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
@@ -297,79 +295,89 @@ body.theme-night {
   --receipt-stripe: rgba(255, 255, 255, 0.05);
 }
 
-/* Dark overlay for readability on dark themes */
-body.theme-sunset::before,
-body.theme-dusk::before,
-body.theme-night::before {
+/* Scenic Background Application */
+body {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  color: var(--text-primary);
+  position: relative;
+}
+
+body.theme-dawn { background-image: url('https://images.pexels.com/photos/1029624/dawn-morning-sunrise-sun-1029624.jpg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop'); }
+body.theme-sunrise { background-image: url('https://images.pexels.com/photos/1162251/beach-sunrise-sun-sunlight-1162251.jpg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop'); }
+body.theme-morning { background-image: url('https://images.pexels.com/photos/158827/field-corn-agriculture-farm-158827.jpg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop'); }
+body.theme-noon { background-image: url('https://images.pexels.com/photos/268415/pexels-photo-268415.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop'); }
+body.theme-golden { background-image: url('https://images.pexels.com/photos/1261728/field-sunset-sun-rays-golden-hour-1261728.jpg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop'); }
+body.theme-sunset { background-image: url('https://images.pexels.com/photos/189349/sunset-beach-sand-ocean-189349.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop'); }
+body.theme-dusk { background-image: url('https://images.pexels.com/photos/1169754/fall-sunset-sky-sun-1169754.jpg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop'); }
+body.theme-night { background-image: url('https://images.pexels.com/photos/1252890/star-sky-night-silhouette-1252890.jpg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop'); }
+
+/* Overlay for text readability */
+body::before {
   content: '';
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.3);
   pointer-events: none;
-  z-index: 0;
+  z-index: -1;
 }
 
-/* Light overlay for light themes */
+body.theme-sunset::before,
+body.theme-dusk::before,
+body.theme-night::before {
+  background: rgba(0, 0, 0, 0.55);
+}
+
 body.theme-dawn::before,
 body.theme-sunrise::before,
 body.theme-morning::before,
 body.theme-noon::before,
 body.theme-golden::before {
-  content: '';
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* ============================================================
+   APP SHELL
+   ============================================================ */
+.app {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(255, 255, 255, 0.1);
-  pointer-events: none;
-  z-index: 0;
-}
-
-/* ============================================================
-   APP SHELL - Scrolling content over scenic background
-   ============================================================ */
-.app {
-  position: relative;
-  min-height: 100vh;
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  overflow-y: auto;
-  overflow-x: hidden;
-  z-index: 1;
+  overflow: hidden;
 }
 
 .glass-container {
   width: 100%;
   max-width: 680px;
-  margin: 0 auto;
+  height: 100%;
   background: var(--glass-bg);
   backdrop-filter: blur(24px) saturate(1.6);
   -webkit-backdrop-filter: blur(24px) saturate(1.6);
-  border-left: 1px solid var(--glass-border);
-  border-right: 1px solid var(--glass-border);
+  border: 1px solid var(--glass-border);
+  border-radius: 0;
   box-shadow: var(--glass-shadow);
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  overflow: hidden;
   position: relative;
   transition: background 0.6s ease, border-color 0.4s ease, box-shadow 0.4s ease;
 }
 
 @media (min-width: 600px) {
   .glass-container {
-    margin: 24px auto;
     border-radius: 28px;
-    border-left: 1px solid var(--glass-border);
-    border-right: 1px solid var(--glass-border);
-    border-top: 1px solid var(--glass-border);
-    border-bottom: 1px solid var(--glass-border);
-    min-height: calc(100vh - 48px);
-    max-height: calc(100vh - 48px);
+    margin: 24px;
+    height: calc(100% - 48px);
   }
 }
 
@@ -451,7 +459,7 @@ body.theme-golden::before {
 .theme-dot.theme-night { background: #818cf8; box-shadow: 0 0 6px #818cf8; }
 
 /* ============================================================
-   TAB CONTENT - Scrollable area
+   TAB CONTENT
    ============================================================ */
 .tab-content {
   flex: 1;
@@ -461,16 +469,9 @@ body.theme-golden::before {
   padding-bottom: 0;
 }
 
-.tab-content::-webkit-scrollbar {
-  width: 4px;
-}
-.tab-content::-webkit-scrollbar-track {
-  background: transparent;
-}
-.tab-content::-webkit-scrollbar-thumb {
-  background: var(--divider);
-  border-radius: 4px;
-}
+.tab-content::-webkit-scrollbar { width: 4px; }
+.tab-content::-webkit-scrollbar-track { background: transparent; }
+.tab-content::-webkit-scrollbar-thumb { background: var(--divider); border-radius: 4px; }
 
 .page {
   padding: 20px 20px 24px;
@@ -478,14 +479,8 @@ body.theme-golden::before {
 }
 
 @keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(12px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 /* ============================================================
@@ -526,10 +521,7 @@ body.theme-golden::before {
 /* ============================================================
    SEARCH
    ============================================================ */
-.search-row {
-  display: flex;
-  gap: 10px;
-}
+.search-row { display: flex; gap: 10px; }
 
 .search-wrap {
   flex: 1;
@@ -557,9 +549,7 @@ body.theme-golden::before {
   transition: all 0.3s ease;
 }
 
-.search-input::placeholder {
-  color: var(--text-muted);
-}
+.search-input::placeholder { color: var(--text-muted); }
 
 .search-input:focus {
   outline: none;
@@ -585,23 +575,18 @@ body.theme-golden::before {
   justify-content: center;
   transition: all 0.3s ease;
 }
-
-.clear-x:hover {
-  background: var(--accent-soft);
-  color: var(--accent);
-}
+.clear-x:hover { background: var(--accent-soft); color: var(--accent); }
 
 .dropdown {
   position: absolute;
   top: calc(100% + 8px);
-  left: 0;
-  right: 0;
+  left: 0; right: 0;
   background: var(--glass-bg);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid var(--glass-border);
   border-radius: 14px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.2);
   z-index: 999;
   overflow: hidden;
   max-height: 260px;
@@ -614,29 +599,14 @@ body.theme-golden::before {
   align-items: center;
   padding: 11px 16px;
   cursor: pointer;
-  transition: background 0.15s;
+  transition: background 0.2s ease;
   border-bottom: 1px solid var(--divider);
 }
+.dropdown-item:last-child { border-bottom: none; }
+.dropdown-item:hover { background: var(--accent-soft); }
 
-.dropdown-item:last-child {
-  border-bottom: none;
-}
-
-.dropdown-item:hover {
-  background: var(--accent-soft);
-}
-
-.dropdown-name {
-  font-weight: 600;
-  font-size: 14px;
-  color: var(--text-primary);
-}
-
-.dropdown-phone {
-  font-size: 12px;
-  color: var(--text-muted);
-  font-family: 'DM Mono', monospace;
-}
+.dropdown-name { font-weight: 600; font-size: 14px; color: var(--text-primary); }
+.dropdown-phone { font-size: 12px; color: var(--text-muted); font-family: 'DM Mono', monospace; }
 
 /* ============================================================
    CUSTOMER BANNER
@@ -668,19 +638,8 @@ body.theme-golden::before {
   transition: all 0.4s ease;
 }
 
-.customer-name {
-  font-size: 18px;
-  font-weight: 700;
-  color: var(--text-primary);
-  transition: color 0.4s ease;
-}
-
-.customer-detail {
-  font-size: 13px;
-  color: var(--text-secondary);
-  margin-top: 3px;
-  transition: color 0.4s ease;
-}
+.customer-name { font-size: 18px; font-weight: 700; color: var(--text-primary); transition: color 0.4s ease; }
+.customer-detail { font-size: 13px; color: var(--text-secondary); margin-top: 3px; transition: color 0.4s ease; }
 
 /* ============================================================
    METRICS GRID
@@ -697,52 +656,16 @@ body.theme-golden::before {
   border: 1px solid var(--glass-border);
   transition: all 0.3s ease;
 }
+.metric-card:hover { transform: translateY(-2px); }
 
-.metric-card:hover {
-  transform: translateY(-2px);
-}
+.metric-card--blue   { background: var(--metric-blue); }
+.metric-card--green  { background: var(--metric-green); }
+.metric-card--amber  { background: var(--metric-amber); }
+.metric-card--purple { background: var(--metric-purple); }
 
-.metric-card--blue {
-  background: var(--metric-blue);
-}
-
-.metric-card--green {
-  background: var(--metric-green);
-}
-
-.metric-card--amber {
-  background: var(--metric-amber);
-}
-
-.metric-card--purple {
-  background: var(--metric-purple);
-}
-
-.metric-label {
-  font-size: 11px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  color: var(--text-muted);
-  margin-bottom: 6px;
-  transition: color 0.4s ease;
-}
-
-.metric-value {
-  font-size: 18px;
-  font-weight: 700;
-  color: var(--text-primary);
-  font-family: 'DM Mono', monospace;
-  line-height: 1.2;
-  transition: color 0.4s ease;
-}
-
-.metric-sub {
-  font-size: 11px;
-  color: var(--text-muted);
-  margin-top: 4px;
-  transition: color 0.4s ease;
-}
+.metric-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 6px; transition: color 0.4s ease; }
+.metric-value { font-size: 18px; font-weight: 700; color: var(--text-primary); font-family: 'DM Mono', monospace; line-height: 1.2; transition: color 0.4s ease; }
+.metric-sub   { font-size: 11px; color: var(--text-muted); margin-top: 4px; transition: color 0.4s ease; }
 
 /* ============================================================
    RECEIPT STYLES
@@ -961,19 +884,8 @@ body.theme-golden::before {
   margin-bottom: 20px;
   transition: all 0.4s ease;
 }
-
-.weather-pin {
-  font-size: 16px;
-}
-
-.weather-location-name {
-  flex: 1;
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--text-primary);
-  transition: color 0.4s ease;
-}
-
+.weather-pin { font-size: 16px; }
+.weather-location-name { flex: 1; font-size: 14px; font-weight: 600; color: var(--text-primary); transition: color 0.4s ease; }
 .weather-refresh-btn {
   background: none;
   border: none;
@@ -983,10 +895,7 @@ body.theme-golden::before {
   border-radius: 8px;
   transition: transform 0.3s;
 }
-
-.weather-refresh-btn:hover {
-  transform: rotate(180deg);
-}
+.weather-refresh-btn:hover { transform: rotate(180deg); }
 
 .weather-hero {
   background: var(--weather-hero-bg);
@@ -997,36 +906,10 @@ body.theme-golden::before {
   margin-bottom: 16px;
   transition: all 0.4s ease;
 }
-
-.weather-hero-icon {
-  font-size: 72px;
-  margin-bottom: 8px;
-  line-height: 1;
-}
-
-.weather-hero-temp {
-  font-size: 64px;
-  font-weight: 700;
-  color: var(--text-primary);
-  line-height: 1;
-  font-family: 'DM Mono', monospace;
-  transition: color 0.4s ease;
-}
-
-.weather-hero-condition {
-  font-size: 18px;
-  font-weight: 600;
-  color: var(--text-secondary);
-  margin-top: 6px;
-  transition: color 0.4s ease;
-}
-
-.weather-hero-feel {
-  font-size: 13px;
-  color: var(--text-muted);
-  margin-top: 4px;
-  transition: color 0.4s ease;
-}
+.weather-hero-icon      { font-size: 72px; margin-bottom: 8px; line-height: 1; }
+.weather-hero-temp      { font-size: 64px; font-weight: 700; color: var(--text-primary); line-height: 1; font-family: 'DM Mono', monospace; transition: color 0.4s ease; }
+.weather-hero-condition { font-size: 18px; font-weight: 600; color: var(--text-secondary); margin-top: 6px; transition: color 0.4s ease; }
+.weather-hero-feel      { font-size: 13px; color: var(--text-muted); margin-top: 4px; transition: color 0.4s ease; }
 
 .weather-stats-grid {
   display: grid;
@@ -1034,7 +917,6 @@ body.theme-golden::before {
   gap: 10px;
   margin-bottom: 24px;
 }
-
 .weather-stat {
   background: var(--card-bg);
   border: 1px solid var(--glass-border);
@@ -1043,35 +925,11 @@ body.theme-golden::before {
   text-align: center;
   transition: all 0.4s ease;
 }
+.weather-stat-icon { font-size: 22px; margin-bottom: 6px; }
+.weather-stat-val  { font-size: 15px; font-weight: 700; color: var(--text-primary); font-family: 'DM Mono', monospace; transition: color 0.4s ease; }
+.weather-stat-lbl  { font-size: 10px; color: var(--text-muted); margin-top: 3px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.8px; transition: color 0.4s ease; }
 
-.weather-stat-icon {
-  font-size: 22px;
-  margin-bottom: 6px;
-}
-
-.weather-stat-val {
-  font-size: 15px;
-  font-weight: 700;
-  color: var(--text-primary);
-  font-family: 'DM Mono', monospace;
-  transition: color 0.4s ease;
-}
-
-.weather-stat-lbl {
-  font-size: 10px;
-  color: var(--text-muted);
-  margin-top: 3px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.8px;
-  transition: color 0.4s ease;
-}
-
-.forecast-list {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
+.forecast-list { display: flex; flex-direction: column; gap: 6px; }
 
 .forecast-row {
   display: grid;
@@ -1084,59 +942,16 @@ body.theme-golden::before {
   border-radius: 14px;
   transition: all 0.3s ease;
 }
+.forecast-row:hover { background: var(--card-hover); }
+.forecast-row--today { border-color: var(--accent); background: var(--accent-soft); }
 
-.forecast-row:hover {
-  background: var(--card-hover);
-}
-
-.forecast-row--today {
-  border-color: var(--accent);
-  background: var(--accent-soft);
-}
-
-.forecast-day {
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--text-primary);
-  transition: color 0.4s ease;
-}
-
-.forecast-icon {
-  font-size: 18px;
-  text-align: center;
-}
-
-.forecast-condition {
-  font-size: 12px;
-  color: var(--text-secondary);
-  transition: color 0.4s ease;
-}
-
-.forecast-temps {
-  display: flex;
-  gap: 6px;
-  align-items: center;
-  font-family: 'DM Mono', monospace;
-  font-size: 13px;
-}
-
-.forecast-max {
-  font-weight: 700;
-  color: var(--text-primary);
-  transition: color 0.4s ease;
-}
-
-.forecast-min {
-  color: var(--text-muted);
-  transition: color 0.4s ease;
-}
-
-.forecast-rain {
-  font-size: 11px;
-  color: var(--text-muted);
-  font-family: 'DM Mono', monospace;
-  transition: color 0.4s ease;
-}
+.forecast-day       { font-size: 13px; font-weight: 600; color: var(--text-primary); transition: color 0.4s ease; }
+.forecast-icon      { font-size: 18px; text-align: center; }
+.forecast-condition { font-size: 12px; color: var(--text-secondary); transition: color 0.4s ease; }
+.forecast-temps     { display: flex; gap: 6px; align-items: center; font-family: 'DM Mono', monospace; font-size: 13px; }
+.forecast-max       { font-weight: 700; color: var(--text-primary); transition: color 0.4s ease; }
+.forecast-min       { color: var(--text-muted); transition: color 0.4s ease; }
+.forecast-rain      { font-size: 11px; color: var(--text-muted); font-family: 'DM Mono', monospace; transition: color 0.4s ease; }
 
 .weather-error {
   display: flex;
@@ -1147,7 +962,6 @@ body.theme-golden::before {
   text-align: center;
   color: var(--text-muted);
 }
-
 .weather-error button {
   padding: 8px 20px;
   background: var(--accent-soft);
@@ -1179,30 +993,11 @@ body.theme-golden::before {
   border-bottom: 1px solid var(--divider);
   transition: all 0.3s ease;
 }
+.settings-row:last-child { border-bottom: none; }
+.settings-row--active { background: var(--accent-soft); }
 
-.settings-row:last-child {
-  border-bottom: none;
-}
-
-.settings-row--active {
-  background: var(--accent-soft);
-}
-
-.settings-key {
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--text-secondary);
-  transition: color 0.4s ease;
-}
-
-.settings-val {
-  font-size: 13px;
-  color: var(--text-primary);
-  font-weight: 600;
-  font-family: 'DM Mono', monospace;
-  text-align: right;
-  transition: color 0.4s ease;
-}
+.settings-key { font-size: 14px; font-weight: 500; color: var(--text-secondary); transition: color 0.4s ease; }
+.settings-val { font-size: 13px; color: var(--text-primary); font-weight: 600; font-family: 'DM Mono', monospace; text-align: right; transition: color 0.4s ease; }
 
 /* ============================================================
    BOTTOM NAV
@@ -1243,9 +1038,7 @@ body.theme-golden::before {
   color: var(--text-muted);
 }
 
-.nav-btn:hover {
-  background: var(--accent-soft);
-}
+.nav-btn:hover { background: var(--accent-soft); }
 
 .nav-btn--active {
   background: var(--nav-active-bg);
@@ -1295,70 +1088,47 @@ body.theme-golden::before {
   transition: color 0.4s ease;
 }
 
-.empty-state,
-.welcome-state {
+.spinner-wrap {
+  display: flex;
+  justify-content: center;
+  padding: 40px 0;
+}
+.spinner-wrap.large { padding: 60px 0; }
+
+.spinner {
+  width: 36px;
+  height: 36px;
+  border: 3px solid var(--divider);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.empty-state, .welcome-state {
   text-align: center;
   padding: 50px 20px;
   color: var(--text-muted);
 }
-
-.empty-icon,
-.welcome-icon {
-  font-size: 48px;
-  margin-bottom: 14px;
-}
-
-.welcome-state h3 {
-  font-size: 18px;
-  font-weight: 600;
-  color: var(--text-secondary);
-  margin-bottom: 8px;
-  transition: color 0.4s ease;
-}
-
-.welcome-state p {
-  font-size: 14px;
-  color: var(--text-muted);
-  transition: color 0.4s ease;
-}
-
-.empty-state p {
-  font-size: 14px;
-  margin-top: 8px;
-}
+.empty-icon, .welcome-icon { font-size: 48px; margin-bottom: 14px; }
+.welcome-state h3 { font-size: 18px; font-weight: 600; color: var(--text-secondary); margin-bottom: 8px; transition: color 0.4s ease; }
+.welcome-state p  { font-size: 14px; color: var(--text-muted); transition: color 0.4s ease; }
+.empty-state p    { font-size: 14px; margin-top: 8px; }
 
 /* ============================================================
    RESPONSIVE
    ============================================================ */
 @media (max-width: 400px) {
-  .page {
-    padding: 16px 14px 20px;
-  }
-  .metrics-grid {
-    grid-template-columns: 1fr;
-  }
-  .receipt-items-header {
-    font-size: 9px;
-  }
-  .receipt-item {
-    font-size: 11px;
-  }
-  .receipt-total-amount {
-    font-size: 16px;
-  }
-  .weather-hero-temp {
-    font-size: 52px;
-  }
-  .forecast-row {
-    grid-template-columns: 72px 24px 1fr auto;
-  }
-  .forecast-rain {
-    display: none;
-  }
+  .page { padding: 16px 14px 20px; }
+  .metrics-grid { grid-template-columns: 1fr; }
+  .receipt-items-header { font-size: 9px; }
+  .receipt-item { font-size: 11px; }
+  .receipt-total-amount { font-size: 16px; }
+  .weather-hero-temp { font-size: 52px; }
+  .forecast-row { grid-template-columns: 72px 24px 1fr auto; }
+  .forecast-rain { display: none; }
 }
 
 @media (min-width: 600px) {
-  .metrics-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
+  .metrics-grid { grid-template-columns: repeat(4, 1fr); }
 }
