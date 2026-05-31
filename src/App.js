@@ -64,23 +64,23 @@ function App() {
       const hourDecimal = h + m / 60;
       
       // 8 time-based themes
-      if (hourDecimal >= 4.0 && hourDecimal < 6.0) {
-        setTheme('dawn');        // 4:00 AM - 6:00 AM
-      } else if (hourDecimal >= 6.0 && hourDecimal < 8.0) {
-        setTheme('sunrise');     // 6:00 AM - 8:00 AM
-      } else if (hourDecimal >= 8.0 && hourDecimal < 11.0) {
-        setTheme('morning');     // 8:00 AM - 11:00 AM
-      } else if (hourDecimal >= 11.0 && hourDecimal < 13.0) {
-        setTheme('noon');        // 11:00 AM - 1:00 PM
-      } else if (hourDecimal >= 13.0 && hourDecimal < 16.0) {
-        setTheme('golden');      // 1:00 PM - 4:00 PM (Golden Hour)
-      } else if (hourDecimal >= 16.0 && hourDecimal < 18.5) {
-        setTheme('sunset');      // 4:00 PM - 6:30 PM
-      } else if (hourDecimal >= 18.5 && hourDecimal < 20.0) {
-        setTheme('dusk');        // 6:30 PM - 8:00 PM
-      } else {
-        setTheme('night');       // 8:00 PM - 4:00 AM
-      }
+if (hourDecimal >= 4.0 && hourDecimal < 6.0) {
+  setTheme('dawn');        // 4:00 AM - 6:00 AM - First light
+} else if (hourDecimal >= 6.0 && hourDecimal < 8.0) {
+  setTheme('sunrise');     // 6:00 AM - 8:00 AM - Morning glow
+} else if (hourDecimal >= 8.0 && hourDecimal < 11.0) {
+  setTheme('morning');     // 8:00 AM - 11:00 AM - Bright morning
+} else if (hourDecimal >= 11.0 && hourDecimal < 15.0) {
+  setTheme('noon');        // 11:00 AM - 3:00 PM - High sun / Noon
+} else if (hourDecimal >= 15.0 && hourDecimal < 17.0) {
+  setTheme('golden');      // 3:00 PM - 5:00 PM - Golden Hour
+} else if (hourDecimal >= 17.0 && hourDecimal < 18.5) {
+  setTheme('sunset');      // 5:00 PM - 6:30 PM - Sunset
+} else if (hourDecimal >= 18.5 && hourDecimal < 20.0) {
+  setTheme('dusk');        // 6:30 PM - 8:00 PM - Twilight
+} else {
+  setTheme('night');       // 8:00 PM - 4:00 AM - Night
+}
     };
     
     updateTheme();
