@@ -1,7 +1,7 @@
-/* App.js - Updated version (Customer Overview removed) */
+/* Updated App.js with realtime Firestore listeners */
 import React, { useState, useEffect, useCallback } from 'react';
 import { db } from './firebase';
-import { collection, getDocs } from 'firebase/firestore';
+import { collection, getDocs, onSnapshot } from 'firebase/firestore';
 import InstallPrompt from './InstallPrompt';
 import './App.css';
 
@@ -45,7 +45,7 @@ function App() {
   const [searchTerm, setSearchTerm] = useState('');
   const [suggestions, setSuggestions] = useState([]);
   const [selectedCustomer, setSelectedCustomer] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [theme, setTheme] = useState('morning');
 
@@ -78,55 +78,69 @@ function App() {
     localStorage.setItem('activeTab', activeTab);
   }, [activeTab]);
 
-  // ── Load Firebase data ───────────────────────────────────────────────────
+  // ── REAL-TIME Firestore listeners ────────────────────────────────────────
   useEffect(() => {
-    loadCustomers();
-    loadAllPurchases();
-  }, []);
+    // Real-time listener for customers
+    const unsubscribeCustomers = onSnapshot(
+      collection(db, 'customers'),
+      (snapshot) => {
+        const customersData = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        setCustomers(customersData);
+        setLoading(false);
+      },
+      (error) => {
+        console.error('Error listening to customers:', error);
+        setLoading(false);
+      }
+    );
+
+    // Real-time listener for purchases
+    const unsubscribePurchases = onSnapshot(
+      collection(db, 'purchases'),
+      (snapshot) => {
+        const purchasesData = snapshot.docs.map(doc => {
+          const raw = doc.data();
+          let product_data = [];
+          try {
+            product_data = typeof raw.product_data === 'string'
+              ? JSON.parse(raw.product_data)
+              : (raw.product_data || []);
+          } catch {}
+          return { id: doc.id, ...raw, product_data };
+        });
+        setAllPurchases(purchasesData);
+      },
+      (error) => {
+        console.error('Error listening to purchases:', error);
+      }
+    );
+
+    // Cleanup listeners on component unmount
+    return () => {
+      unsubscribeCustomers();
+      unsubscribePurchases();
+    };
+  }, []); // Empty dependency array - run once on mount
 
   // ── Restore selected customer from localStorage after data loads ─────────
   useEffect(() => {
     if (customers.length === 0 || allPurchases.length === 0) return;
     const saved = localStorage.getItem('selectedCustomerData');
-    if (saved) {
+    if (saved && !selectedCustomer) {
       try {
         const customer = JSON.parse(saved);
-        setSelectedCustomer(customer);
-        setSearchTerm(customer.name);
+        // Verify customer still exists in real-time data
+        const existingCustomer = customers.find(c => c.id === customer.id);
+        if (existingCustomer) {
+          setSelectedCustomer(existingCustomer);
+          setSearchTerm(existingCustomer.name);
+        } else {
+          // Customer no longer exists in database
+          localStorage.removeItem('selectedCustomerData');
+        }
       } catch (e) {}
     }
-  }, [customers, allPurchases]);
-
-  const loadCustomers = async () => {
-    try {
-      setLoading(true);
-      const snap = await getDocs(collection(db, 'customers'));
-      setCustomers(snap.docs.map(d => ({ id: d.id, ...d.data() })));
-    } catch (e) {
-      console.error(e);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const loadAllPurchases = async () => {
-    try {
-      const snap = await getDocs(collection(db, 'purchases'));
-      const data = snap.docs.map(d => {
-        const raw = d.data();
-        let product_data = [];
-        try {
-          product_data = typeof raw.product_data === 'string'
-            ? JSON.parse(raw.product_data)
-            : (raw.product_data || []);
-        } catch {}
-        return { id: d.id, ...raw, product_data };
-      });
-      setAllPurchases(data);
-    } catch (e) {
-      console.error(e);
-    }
-  };
+  }, [customers, allPurchases, selectedCustomer]);
 
   // ── Weather fetch (Open-Meteo) ───────────────────────────────────────────
   const fetchWeather = useCallback(async () => {
@@ -140,7 +154,6 @@ function App() {
       const res = await fetch(url);
       const json = await res.json();
       setWeather(json.current);
-      // Build 7-day forecast
       const days = json.daily.time.map((date, i) => ({
         date,
         code: json.daily.weather_code[i],
@@ -207,6 +220,13 @@ function App() {
     return new Date(ds).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
   };
 
+  const formatDateReceipt = (ds) => {
+    if (!ds) return 'N/A';
+    const d = new Date(ds);
+    return d.toLocaleDateString('en-US', { month: '2-digit', day: '2-digit', year: 'numeric' }) + 
+           ' · ' + d.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+  };
+
   const formatDay = (ds) => {
     const d = new Date(ds);
     const today = new Date();
@@ -218,7 +238,29 @@ function App() {
 
   const getThemeName = () => ({ dawn: 'Sunrise', morning: 'Morning', sunset: 'Sunset', night: 'Night' }[theme] || 'Morning');
 
-  // ── Render ───────────────────────────────────────────────────────────────
+  // SVG Icons for Navigation
+  const NavIcons = {
+    dashboard: (isActive) => (
+      <svg className="nav-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2h-5v-7H9v7H4a2 2 0 0 1-2-2z"/>
+        <path d="M9 22v-7h6v7"/>
+      </svg>
+    ),
+    weather: (isActive) => (
+      <svg className="nav-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+        <path d="M12 2v2M4.93 4.93l1.41 1.41M2 12h2M6.34 17.66l-1.41 1.41M12 20v2M17.66 17.66l1.41 1.41M20 12h2M17.66 6.34l1.41-1.41"/>
+        <circle cx="12" cy="12" r="4"/>
+      </svg>
+    ),
+    settings: (isActive) => (
+      <svg className="nav-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+        <circle cx="12" cy="12" r="3"/>
+        <path d="M19.4 15a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H5.78a1.65 1.65 0 0 0-1.51 1 1.65 1.65 0 0 0 .33 1.82l.03.03A10 10 0 0 0 12 17.66a10 10 0 0 0 6.37-2.63z"/>
+        <path d="M12 2v4M12 18v4"/>
+      </svg>
+    )
+  };
+
   return (
     <div className="app">
       <div className="glass-container">
@@ -331,30 +373,54 @@ function App() {
                     ) : (
                       <div className="purchase-list">
                         {customerPurchases.map(purchase => (
-                          <div key={purchase.id} className="purchase-card">
-                            <div className="purchase-card-header">
-                              <span className="purchase-date">{formatDate(purchase.purchase_date)}</span>
-                              <span className={`badge ${purchase.status === 'paid' ? 'badge--green' : 'badge--amber'}`}>
-                                {purchase.status || 'pending'}
-                              </span>
-                            </div>
-                            <div className="purchase-amount-row">
-                              <span className="purchase-amount-label">Total Amount</span>
-                              <strong className="purchase-amount-val">₱{(purchase.total_amount || 0).toLocaleString('en-PH',{minimumFractionDigits:2})}</strong>
-                            </div>
-                            {purchase.product_data?.length > 0 && (
-                              <div className="items-section">
-                                <div className="items-label">Items</div>
-                                {purchase.product_data.map((item, idx) => (
-                                  <div key={idx} className="item-row">
-                                    <span className="item-name">{item.name}</span>
-                                    <span className="item-qty">{item.quantity}×</span>
-                                    <span className="item-price">₱{(item.price || 0).toLocaleString('en-PH',{minimumFractionDigits:2})}</span>
-                                    <span className="item-subtotal">₱{((item.price || 0) * (item.quantity || 1)).toLocaleString('en-PH',{minimumFractionDigits:2})}</span>
-                                  </div>
-                                ))}
+                          <div key={purchase.id} className="receipt-card">
+                            {/* Receipt Header */}
+                            <div className="receipt-header">
+                              <div className="receipt-store">
+                                <span className="receipt-store-name">MARNIE STORE</span>
+                                <span className="receipt-store-id">INV-{purchase.id.slice(0, 8).toUpperCase()}</span>
                               </div>
-                            )}
+                              <div className="receipt-date">
+                                <div className="receipt-date-label">DATE</div>
+                                <div className="receipt-date-value">{formatDateReceipt(purchase.purchase_date)}</div>
+                              </div>
+                            </div>
+
+                            {/* Receipt Body */}
+                            <div className="receipt-body">
+                              <div className="receipt-items-header">
+                                <span>ITEM</span>
+                                <span className="receipt-item-qty">QTY</span>
+                                <span className="receipt-item-price">PRICE</span>
+                              </div>
+                              
+                              {purchase.product_data?.map((item, idx) => (
+                                <div key={idx} className="receipt-item">
+                                  <span className="receipt-item-name">{item.name}</span>
+                                  <span className="receipt-item-qty">{item.quantity}</span>
+                                  <span className="receipt-item-price">₱{(item.price || 0).toLocaleString('en-PH',{minimumFractionDigits:2})}</span>
+                                </div>
+                              ))}
+
+                              <div className="receipt-divider"></div>
+
+                              <div className="receipt-total-row">
+                                <span className="receipt-total-label">TOTAL AMOUNT</span>
+                                <span className="receipt-total-amount">₱{(purchase.total_amount || 0).toLocaleString('en-PH',{minimumFractionDigits:2})}</span>
+                              </div>
+
+                              <div className="receipt-status-row">
+                                <span className="receipt-status-label">PAYMENT STATUS</span>
+                                <span className={`badge-receipt ${purchase.status === 'paid' ? 'badge-receipt--paid' : 'badge-receipt--pending'}`}>
+                                  {purchase.status === 'paid' ? '✓ PAID' : '⏳ PENDING'}
+                                </span>
+                              </div>
+                            </div>
+
+                            {/* Receipt Footer */}
+                            <div className="receipt-footer">
+                              <span className="receipt-thankyou">Thank you for your purchase!</span>
+                            </div>
                           </div>
                         ))}
                       </div>
@@ -393,7 +459,6 @@ function App() {
 
               {weather && !weatherLoading && (
                 <>
-                  {/* Current Weather Hero */}
                   <div className="weather-hero">
                     <div className="weather-hero-icon">{getWeatherInfo(weather.weather_code).icon}</div>
                     <div className="weather-hero-temp">{Math.round(weather.temperature_2m)}°C</div>
@@ -401,7 +466,6 @@ function App() {
                     <div className="weather-hero-feel">Feels like {Math.round(weather.apparent_temperature)}°C</div>
                   </div>
 
-                  {/* Current Stats */}
                   <div className="weather-stats-grid">
                     <div className="weather-stat">
                       <div className="weather-stat-icon">💧</div>
@@ -420,7 +484,6 @@ function App() {
                     </div>
                   </div>
 
-                  {/* 7-Day Forecast */}
                   <section className="section">
                     <h2 className="section-title">7-Day Forecast</h2>
                     <div className="forecast-list">
@@ -455,7 +518,7 @@ function App() {
                   </div>
                   <div className="settings-row">
                     <span className="settings-key">Database</span>
-                    <span className="settings-val">Firebase Firestore</span>
+                    <span className="settings-val">Firebase Firestore (Realtime)</span>
                   </div>
                   <div className="settings-row">
                     <span className="settings-key">Total Customers</span>
@@ -492,19 +555,19 @@ function App() {
           )}
         </div>
 
-        {/* BOTTOM NAV - Fixed at bottom, doesn't scroll */}
+        {/* BOTTOM NAV - SVG Icons instead of emojis */}
         <nav className="bottom-nav">
           {[
-            { key: 'dashboard', icon: '📊', label: 'Dashboard' },
-            { key: 'weather',   icon: '🌤️', label: 'Weather' },
-            { key: 'settings',  icon: '⚙️', label: 'Settings' },
+            { key: 'dashboard', icon: NavIcons.dashboard, label: 'Dashboard' },
+            { key: 'weather',   icon: NavIcons.weather, label: 'Weather' },
+            { key: 'settings',  icon: NavIcons.settings, label: 'Settings' },
           ].map(tab => (
             <button
               key={tab.key}
               className={`nav-btn ${activeTab === tab.key ? 'nav-btn--active' : ''}`}
               onClick={() => setActiveTab(tab.key)}
             >
-              <span className="nav-icon">{tab.icon}</span>
+              {tab.icon(activeTab === tab.key)}
               <span className="nav-label">{tab.label}</span>
             </button>
           ))}
