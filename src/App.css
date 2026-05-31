@@ -1,4 +1,4 @@
-/* App.css - Updated with receipt styles and SVG navigation */
+/* App.css - Updated with 8 time-based themes and smooth transitions */
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300&family=DM+Mono:wght@400;500&display=swap');
 
 /* ============================================================
@@ -15,7 +15,7 @@ html { scroll-behavior: smooth; }
 body {
   font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
   min-height: 100vh;
-  transition: background 0.6s ease;
+  transition: background 0.8s cubic-bezier(0.4, 0, 0.2, 1);
   -webkit-font-smoothing: antialiased;
   position: fixed;
   top: 0;
@@ -26,145 +26,312 @@ body {
 }
 
 /* ============================================================
-   THEMES
+   THEMES - 8 Time-based Themes with Smooth Transitions
    ============================================================ */
 
-/* Morning */
-.theme-morning {
-  --bg: linear-gradient(145deg, #e8f4fd 0%, #dce8f5 40%, #c8daf0 100%);
-  --glass-bg: rgba(255,255,255,0.55);
-  --glass-border: rgba(255,255,255,0.75);
-  --glass-shadow: 0 20px 60px rgba(100,140,200,0.18);
-  --text-primary: #1a2540;
-  --text-secondary: #4a5878;
-  --text-muted: #7a8aaa;
-  --accent: #3b82f6;
-  --accent-soft: rgba(59,130,246,0.12);
-  --card-bg: rgba(255,255,255,0.6);
-  --card-hover: rgba(255,255,255,0.8);
-  --input-bg: rgba(255,255,255,0.85);
-  --input-border: rgba(100,150,220,0.3);
-  --divider: rgba(100,140,200,0.15);
-  --nav-bg: rgba(255,255,255,0.75);
-  --nav-active-bg: rgba(59,130,246,0.15);
-  --nav-active-color: #3b82f6;
+/* Dawn (4:00 AM - 6:00 AM) - Soft pastel awakening */
+.theme-dawn {
+  --bg: linear-gradient(180deg, #e0eafc 0%, #cfdef3 50%, #ffafbd 100%);
+  --glass-bg: rgba(255, 248, 245, 0.7);
+  --glass-border: rgba(255, 220, 200, 0.5);
+  --glass-shadow: 0 20px 60px rgba(100, 80, 120, 0.15);
+  --text-primary: #2d1b4e;
+  --text-secondary: #5a3d6e;
+  --text-muted: #8a6a9e;
+  --accent: #9b6b9e;
+  --accent-soft: rgba(155, 107, 158, 0.12);
+  --card-bg: rgba(255, 248, 245, 0.65);
+  --card-hover: rgba(255, 248, 245, 0.85);
+  --input-bg: rgba(255, 250, 248, 0.9);
+  --input-border: rgba(155, 107, 158, 0.25);
+  --divider: rgba(100, 80, 120, 0.12);
+  --nav-bg: rgba(255, 248, 245, 0.8);
+  --nav-active-bg: rgba(155, 107, 158, 0.15);
+  --nav-active-color: #9b6b9e;
   --badge-paid-bg: #d1fae5; --badge-paid-color: #065f46;
   --badge-pending-bg: #fef3c7; --badge-pending-color: #92400e;
-  --stat-blue: rgba(59,130,246,0.12);
-  --stat-green: rgba(16,185,129,0.12);
-  --stat-amber: rgba(245,158,11,0.12);
-  --stat-purple: rgba(139,92,246,0.12);
-  --metric-blue: rgba(59,130,246,0.15);
-  --metric-green: rgba(16,185,129,0.15);
-  --metric-amber: rgba(245,158,11,0.15);
-  --metric-purple: rgba(139,92,246,0.15);
-  --weather-hero-bg: rgba(59,130,246,0.12);
-  --receipt-stripe: rgba(0,0,0,0.02);
+  --stat-blue: rgba(155, 107, 158, 0.12);
+  --stat-green: rgba(132, 204, 22, 0.12);
+  --stat-amber: rgba(245, 158, 11, 0.12);
+  --stat-purple: rgba(139, 92, 246, 0.12);
+  --metric-blue: rgba(155, 107, 158, 0.15);
+  --metric-green: rgba(132, 204, 22, 0.15);
+  --metric-amber: rgba(245, 158, 11, 0.15);
+  --metric-purple: rgba(139, 92, 246, 0.15);
+  --weather-hero-bg: rgba(155, 107, 158, 0.12);
+  --receipt-stripe: rgba(0, 0, 0, 0.02);
 }
 
-/* Dawn */
-.theme-dawn {
-  --bg: linear-gradient(145deg, #fff5e6 0%, #fde8cc 40%, #f9c898 100%);
-  --glass-bg: rgba(255,248,235,0.65);
-  --glass-border: rgba(255,220,160,0.6);
-  --glass-shadow: 0 20px 60px rgba(200,120,50,0.15);
-  --text-primary: #3d2200;
-  --text-secondary: #7a4a10;
-  --text-muted: #b07a40;
-  --accent: #ea7c2a;
-  --accent-soft: rgba(234,124,42,0.12);
-  --card-bg: rgba(255,245,228,0.65);
-  --card-hover: rgba(255,250,240,0.85);
-  --input-bg: rgba(255,250,240,0.9);
-  --input-border: rgba(220,140,60,0.3);
-  --divider: rgba(200,120,50,0.15);
-  --nav-bg: rgba(255,248,235,0.8);
-  --nav-active-bg: rgba(234,124,42,0.15);
-  --nav-active-color: #ea7c2a;
-  --badge-paid-bg: #fef9c3; --badge-paid-color: #713f12;
-  --badge-pending-bg: #fde8d8; --badge-pending-color: #9a3412;
-  --stat-blue: rgba(234,124,42,0.12);
-  --stat-green: rgba(132,204,22,0.12);
-  --stat-amber: rgba(234,124,42,0.15);
-  --stat-purple: rgba(200,80,40,0.12);
-  --metric-blue: rgba(234,124,42,0.15);
-  --metric-green: rgba(132,204,22,0.15);
-  --metric-amber: rgba(234,124,42,0.18);
-  --metric-purple: rgba(200,80,40,0.15);
-  --weather-hero-bg: rgba(234,124,42,0.12);
-  --receipt-stripe: rgba(0,0,0,0.02);
+/* Sunrise (6:00 AM - 8:00 AM) - Golden morning glow */
+.theme-sunrise {
+  --bg: linear-gradient(90deg, #fff5e6 0%, #ffe0b2 50%, #ffcc80 100%);
+  --glass-bg: rgba(255, 245, 230, 0.7);
+  --glass-border: rgba(255, 200, 120, 0.5);
+  --glass-shadow: 0 20px 60px rgba(200, 100, 30, 0.12);
+  --text-primary: #3d2b1a;
+  --text-secondary: #6b4c2c;
+  --text-muted: #a07a4a;
+  --accent: #e67e22;
+  --accent-soft: rgba(230, 126, 34, 0.12);
+  --card-bg: rgba(255, 245, 230, 0.65);
+  --card-hover: rgba(255, 245, 230, 0.85);
+  --input-bg: rgba(255, 250, 240, 0.9);
+  --input-border: rgba(230, 126, 34, 0.25);
+  --divider: rgba(100, 70, 40, 0.12);
+  --nav-bg: rgba(255, 245, 230, 0.8);
+  --nav-active-bg: rgba(230, 126, 34, 0.15);
+  --nav-active-color: #e67e22;
+  --badge-paid-bg: #d1fae5; --badge-paid-color: #065f46;
+  --badge-pending-bg: #fef3c7; --badge-pending-color: #92400e;
+  --stat-blue: rgba(230, 126, 34, 0.12);
+  --stat-green: rgba(132, 204, 22, 0.12);
+  --stat-amber: rgba(245, 158, 11, 0.12);
+  --stat-purple: rgba(139, 92, 246, 0.12);
+  --metric-blue: rgba(230, 126, 34, 0.15);
+  --metric-green: rgba(132, 204, 22, 0.15);
+  --metric-amber: rgba(245, 158, 11, 0.15);
+  --metric-purple: rgba(139, 92, 246, 0.15);
+  --weather-hero-bg: rgba(230, 126, 34, 0.12);
+  --receipt-stripe: rgba(0, 0, 0, 0.02);
 }
 
-/* Sunset */
+/* Morning (8:00 AM - 11:00 AM) - Fresh and vibrant */
+.theme-morning {
+  --bg: linear-gradient(180deg, #87CEEB 0%, #98D8E8 50%, #B0E0E6 100%);
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --glass-border: rgba(135, 206, 235, 0.5);
+  --glass-shadow: 0 20px 60px rgba(100, 140, 200, 0.12);
+  --text-primary: #1a3a5c;
+  --text-secondary: #2c5a7a;
+  --text-muted: #5a8aaa;
+  --accent: #3498db;
+  --accent-soft: rgba(52, 152, 219, 0.12);
+  --card-bg: rgba(255, 255, 255, 0.65);
+  --card-hover: rgba(255, 255, 255, 0.85);
+  --input-bg: rgba(255, 255, 255, 0.9);
+  --input-border: rgba(52, 152, 219, 0.25);
+  --divider: rgba(50, 80, 120, 0.12);
+  --nav-bg: rgba(255, 255, 255, 0.8);
+  --nav-active-bg: rgba(52, 152, 219, 0.15);
+  --nav-active-color: #3498db;
+  --badge-paid-bg: #d1fae5; --badge-paid-color: #065f46;
+  --badge-pending-bg: #fef3c7; --badge-pending-color: #92400e;
+  --stat-blue: rgba(52, 152, 219, 0.12);
+  --stat-green: rgba(132, 204, 22, 0.12);
+  --stat-amber: rgba(245, 158, 11, 0.12);
+  --stat-purple: rgba(139, 92, 246, 0.12);
+  --metric-blue: rgba(52, 152, 219, 0.15);
+  --metric-green: rgba(132, 204, 22, 0.15);
+  --metric-amber: rgba(245, 158, 11, 0.15);
+  --metric-purple: rgba(139, 92, 246, 0.15);
+  --weather-hero-bg: rgba(52, 152, 219, 0.12);
+  --receipt-stripe: rgba(0, 0, 0, 0.02);
+}
+
+/* Noon (11:00 AM - 1:00 PM) - Bright and radiant */
+.theme-noon {
+  --bg: radial-gradient(circle, #fff9e6 0%, #ffe4b5 50%, #ffd700 100%);
+  --glass-bg: rgba(255, 250, 235, 0.75);
+  --glass-border: rgba(255, 215, 100, 0.5);
+  --glass-shadow: 0 20px 60px rgba(180, 120, 20, 0.12);
+  --text-primary: #3d2b1a;
+  --text-secondary: #6b4c2c;
+  --text-muted: #9a7a4a;
+  --accent: #f39c12;
+  --accent-soft: rgba(243, 156, 18, 0.12);
+  --card-bg: rgba(255, 250, 235, 0.65);
+  --card-hover: rgba(255, 250, 235, 0.85);
+  --input-bg: rgba(255, 252, 242, 0.9);
+  --input-border: rgba(243, 156, 18, 0.25);
+  --divider: rgba(120, 80, 40, 0.12);
+  --nav-bg: rgba(255, 250, 235, 0.8);
+  --nav-active-bg: rgba(243, 156, 18, 0.15);
+  --nav-active-color: #f39c12;
+  --badge-paid-bg: #d1fae5; --badge-paid-color: #065f46;
+  --badge-pending-bg: #fef3c7; --badge-pending-color: #92400e;
+  --stat-blue: rgba(243, 156, 18, 0.12);
+  --stat-green: rgba(132, 204, 22, 0.12);
+  --stat-amber: rgba(245, 158, 11, 0.12);
+  --stat-purple: rgba(139, 92, 246, 0.12);
+  --metric-blue: rgba(243, 156, 18, 0.15);
+  --metric-green: rgba(132, 204, 22, 0.15);
+  --metric-amber: rgba(245, 158, 11, 0.15);
+  --metric-purple: rgba(139, 92, 246, 0.15);
+  --weather-hero-bg: rgba(243, 156, 18, 0.12);
+  --receipt-stripe: rgba(0, 0, 0, 0.02);
+}
+
+/* Golden Hour (1:00 PM - 4:00 PM) - Rich warm tones */
+.theme-golden {
+  --bg: linear-gradient(45deg, #fceabb 0%, #f8b500 50%, #ffd89b 100%);
+  --glass-bg: rgba(255, 245, 220, 0.7);
+  --glass-border: rgba(248, 181, 0, 0.45);
+  --glass-shadow: 0 20px 60px rgba(180, 100, 10, 0.14);
+  --text-primary: #3d2b10;
+  --text-secondary: #6b4e20;
+  --text-muted: #9a7a3a;
+  --accent: #e67e22;
+  --accent-soft: rgba(230, 126, 34, 0.12);
+  --card-bg: rgba(255, 245, 220, 0.65);
+  --card-hover: rgba(255, 245, 220, 0.85);
+  --input-bg: rgba(255, 248, 235, 0.9);
+  --input-border: rgba(230, 126, 34, 0.25);
+  --divider: rgba(120, 80, 30, 0.12);
+  --nav-bg: rgba(255, 245, 220, 0.8);
+  --nav-active-bg: rgba(230, 126, 34, 0.15);
+  --nav-active-color: #e67e22;
+  --badge-paid-bg: #d1fae5; --badge-paid-color: #065f46;
+  --badge-pending-bg: #fef3c7; --badge-pending-color: #92400e;
+  --stat-blue: rgba(230, 126, 34, 0.12);
+  --stat-green: rgba(132, 204, 22, 0.12);
+  --stat-amber: rgba(245, 158, 11, 0.12);
+  --stat-purple: rgba(139, 92, 246, 0.12);
+  --metric-blue: rgba(230, 126, 34, 0.15);
+  --metric-green: rgba(132, 204, 22, 0.15);
+  --metric-amber: rgba(245, 158, 11, 0.15);
+  --metric-purple: rgba(139, 92, 246, 0.15);
+  --weather-hero-bg: rgba(230, 126, 34, 0.12);
+  --receipt-stripe: rgba(0, 0, 0, 0.02);
+}
+
+/* Sunset (5:00 PM - 6:30 PM) - Dramatic dusk colors */
 .theme-sunset {
-  --bg: linear-gradient(145deg, #ffe4e6 0%, #fecdd3 40%, #fda4af 100%);
-  --glass-bg: rgba(255,240,242,0.65);
-  --glass-border: rgba(255,180,190,0.6);
-  --glass-shadow: 0 20px 60px rgba(200,60,90,0.15);
-  --text-primary: #4a0010;
-  --text-secondary: #8a2040;
-  --text-muted: #c0607a;
-  --accent: #e11d48;
-  --accent-soft: rgba(225,29,72,0.12);
-  --card-bg: rgba(255,238,242,0.65);
-  --card-hover: rgba(255,248,250,0.85);
-  --input-bg: rgba(255,248,250,0.9);
-  --input-border: rgba(220,80,110,0.3);
-  --divider: rgba(200,60,90,0.15);
-  --nav-bg: rgba(255,240,242,0.8);
-  --nav-active-bg: rgba(225,29,72,0.15);
-  --nav-active-color: #e11d48;
-  --badge-paid-bg: #fce7f3; --badge-paid-color: #9d174d;
-  --badge-pending-bg: #fff1f2; --badge-pending-color: #881337;
-  --stat-blue: rgba(225,29,72,0.12);
-  --stat-green: rgba(244,114,182,0.12);
-  --stat-amber: rgba(251,113,133,0.12);
-  --stat-purple: rgba(200,40,80,0.12);
-  --metric-blue: rgba(225,29,72,0.15);
-  --metric-green: rgba(244,114,182,0.15);
-  --metric-amber: rgba(251,113,133,0.18);
-  --metric-purple: rgba(200,40,80,0.15);
-  --weather-hero-bg: rgba(225,29,72,0.1);
-  --receipt-stripe: rgba(0,0,0,0.02);
+  --bg: linear-gradient(180deg, #7f4f24 0%, #e09f3e 50%, #ffb347 100%);
+  --glass-bg: rgba(45, 30, 20, 0.75);
+  --glass-border: rgba(224, 159, 62, 0.5);
+  --glass-shadow: 0 20px 60px rgba(100, 50, 20, 0.25);
+  --text-primary: #f5e6d3;
+  --text-secondary: #e6c9a8;
+  --text-muted: #c4a87a;
+  --accent: #e09f3e;
+  --accent-soft: rgba(224, 159, 62, 0.2);
+  --card-bg: rgba(45, 30, 20, 0.7);
+  --card-hover: rgba(65, 45, 35, 0.85);
+  --input-bg: rgba(45, 35, 25, 0.9);
+  --input-border: rgba(224, 159, 62, 0.3);
+  --divider: rgba(224, 159, 62, 0.2);
+  --nav-bg: rgba(35, 25, 18, 0.92);
+  --nav-active-bg: rgba(224, 159, 62, 0.25);
+  --nav-active-color: #e09f3e;
+  --badge-paid-bg: rgba(16, 185, 129, 0.25); --badge-paid-color: #6ee7b7;
+  --badge-pending-bg: rgba(245, 158, 11, 0.25); --badge-pending-color: #fcd34d;
+  --stat-blue: rgba(224, 159, 62, 0.18);
+  --stat-green: rgba(132, 204, 22, 0.18);
+  --stat-amber: rgba(245, 158, 11, 0.18);
+  --stat-purple: rgba(139, 92, 246, 0.18);
+  --metric-blue: rgba(224, 159, 62, 0.2);
+  --metric-green: rgba(132, 204, 22, 0.2);
+  --metric-amber: rgba(245, 158, 11, 0.2);
+  --metric-purple: rgba(139, 92, 246, 0.2);
+  --weather-hero-bg: rgba(224, 159, 62, 0.15);
+  --receipt-stripe: rgba(255, 255, 255, 0.03);
 }
 
-/* Night */
+/* Dusk (6:30 PM - 8:00 PM) - Transition to night */
+.theme-dusk {
+  --bg: linear-gradient(135deg, #2c1a4a 0%, #4a2c6a 50%, #6b4c8a 100%);
+  --glass-bg: rgba(30, 20, 50, 0.8);
+  --glass-border: rgba(100, 70, 140, 0.4);
+  --glass-shadow: 0 20px 60px rgba(20, 10, 40, 0.4);
+  --text-primary: #e8d8f0;
+  --text-secondary: #c4a8e0;
+  --text-muted: #a080c0;
+  --accent: #9b6b9e;
+  --accent-soft: rgba(155, 107, 158, 0.2);
+  --card-bg: rgba(40, 30, 60, 0.75);
+  --card-hover: rgba(55, 40, 80, 0.9);
+  --input-bg: rgba(35, 25, 55, 0.9);
+  --input-border: rgba(155, 107, 158, 0.3);
+  --divider: rgba(155, 107, 158, 0.2);
+  --nav-bg: rgba(25, 18, 40, 0.95);
+  --nav-active-bg: rgba(155, 107, 158, 0.25);
+  --nav-active-color: #b87cc8;
+  --badge-paid-bg: rgba(16, 185, 129, 0.25); --badge-paid-color: #6ee7b7;
+  --badge-pending-bg: rgba(245, 158, 11, 0.25); --badge-pending-color: #fcd34d;
+  --stat-blue: rgba(155, 107, 158, 0.18);
+  --stat-green: rgba(132, 204, 22, 0.18);
+  --stat-amber: rgba(245, 158, 11, 0.18);
+  --stat-purple: rgba(139, 92, 246, 0.18);
+  --metric-blue: rgba(155, 107, 158, 0.2);
+  --metric-green: rgba(132, 204, 22, 0.2);
+  --metric-amber: rgba(245, 158, 11, 0.2);
+  --metric-purple: rgba(139, 92, 246, 0.2);
+  --weather-hero-bg: rgba(155, 107, 158, 0.15);
+  --receipt-stripe: rgba(255, 255, 255, 0.03);
+}
+
+/* Night (8:00 PM - 4:00 AM) - Deep dark with stars */
 .theme-night {
-  --bg: linear-gradient(145deg, #0d1117 0%, #161b27 50%, #1a2035 100%);
-  --glass-bg: rgba(20,28,48,0.75);
-  --glass-border: rgba(80,100,160,0.25);
-  --glass-shadow: 0 20px 60px rgba(0,0,0,0.5);
-  --text-primary: #e8eaf6;
-  --text-secondary: #9aa5c4;
-  --text-muted: #5a6888;
+  --bg: linear-gradient(135deg, #0a0a2a 0%, #141432 30%, #1a1a3a 70%, #0f0f2a 100%);
+  --glass-bg: rgba(15, 20, 40, 0.85);
+  --glass-border: rgba(80, 100, 160, 0.3);
+  --glass-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  --text-primary: #e0e0f0;
+  --text-secondary: #a0a0d0;
+  --text-muted: #7070a0;
   --accent: #818cf8;
-  --accent-soft: rgba(129,140,248,0.15);
-  --card-bg: rgba(25,35,58,0.7);
-  --card-hover: rgba(35,48,75,0.85);
-  --input-bg: rgba(20,30,50,0.9);
-  --input-border: rgba(80,100,180,0.3);
-  --divider: rgba(80,100,160,0.2);
-  --nav-bg: rgba(15,22,40,0.92);
-  --nav-active-bg: rgba(129,140,248,0.2);
-  --nav-active-color: #818cf8;
-  --badge-paid-bg: rgba(16,185,129,0.2); --badge-paid-color: #6ee7b7;
-  --badge-pending-bg: rgba(245,158,11,0.2); --badge-pending-color: #fcd34d;
-  --stat-blue: rgba(129,140,248,0.15);
-  --stat-green: rgba(52,211,153,0.15);
-  --stat-amber: rgba(251,191,36,0.15);
-  --stat-purple: rgba(167,139,250,0.15);
-  --metric-blue: rgba(129,140,248,0.18);
-  --metric-green: rgba(52,211,153,0.18);
-  --metric-amber: rgba(251,191,36,0.18);
-  --metric-purple: rgba(167,139,250,0.18);
-  --weather-hero-bg: rgba(129,140,248,0.12);
-  --receipt-stripe: rgba(255,255,255,0.02);
+  --accent-soft: rgba(129, 140, 248, 0.2);
+  --card-bg: rgba(20, 28, 48, 0.75);
+  --card-hover: rgba(35, 48, 75, 0.9);
+  --input-bg: rgba(20, 30, 50, 0.9);
+  --input-border: rgba(80, 100, 180, 0.3);
+  --divider: rgba(80, 100, 160, 0.2);
+  --nav-bg: rgba(10, 15, 30, 0.95);
+  --nav-active-bg: rgba(129, 140, 248, 0.25);
+  --nav-active-color: #a0a8ff;
+  --badge-paid-bg: rgba(16, 185, 129, 0.25); --badge-paid-color: #6ee7b7;
+  --badge-pending-bg: rgba(245, 158, 11, 0.25); --badge-pending-color: #fcd34d;
+  --stat-blue: rgba(129, 140, 248, 0.18);
+  --stat-green: rgba(52, 211, 153, 0.18);
+  --stat-amber: rgba(251, 191, 36, 0.18);
+  --stat-purple: rgba(167, 139, 250, 0.18);
+  --metric-blue: rgba(129, 140, 248, 0.2);
+  --metric-green: rgba(52, 211, 153, 0.2);
+  --metric-amber: rgba(251, 191, 36, 0.2);
+  --metric-purple: rgba(167, 139, 250, 0.2);
+  --weather-hero-bg: rgba(129, 140, 248, 0.15);
+  --receipt-stripe: rgba(255, 255, 255, 0.03);
+}
+
+/* Stars animation for night theme */
+.theme-night .glass-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  background-image: 
+    radial-gradient(2px 2px at 15% 20%, white, rgba(0,0,0,0)),
+    radial-gradient(1px 1px at 85% 45%, white, rgba(0,0,0,0)),
+    radial-gradient(1.5px 1.5px at 45% 75%, white, rgba(0,0,0,0)),
+    radial-gradient(2px 2px at 92% 15%, white, rgba(0,0,0,0)),
+    radial-gradient(1px 1px at 30% 90%, white, rgba(0,0,0,0)),
+    radial-gradient(1.5px 1.5px at 70% 30%, white, rgba(0,0,0,0)),
+    radial-gradient(1px 1px at 50% 50%, white, rgba(0,0,0,0)),
+    radial-gradient(2px 2px at 8% 65%, white, rgba(0,0,0,0)),
+    radial-gradient(1px 1px at 60% 88%, white, rgba(0,0,0,0)),
+    radial-gradient(1.5px 1.5px at 40% 12%, white, rgba(0,0,0,0));
+  background-size: 200px 200px;
+  background-repeat: no-repeat;
+  opacity: 0.6;
+  animation: twinkle 3s ease-in-out infinite alternate;
+}
+
+@keyframes twinkle {
+  0% { opacity: 0.3; }
+  100% { opacity: 0.8; }
 }
 
 /* ============================================================
-   APP SHELL
+   APP SHELL - Smooth transitions for all themed elements
    ============================================================ */
-body { background: var(--bg); color: var(--text-primary); }
+body { 
+  background: var(--bg); 
+  color: var(--text-primary);
+  transition: background 0.8s cubic-bezier(0.4, 0, 0.2, 1), color 0.4s ease;
+}
 
 .app {
   position: fixed;
@@ -192,6 +359,7 @@ body { background: var(--bg); color: var(--text-primary); }
   flex-direction: column;
   overflow: hidden;
   position: relative;
+  transition: background 0.6s ease, border-color 0.4s ease, box-shadow 0.4s ease;
 }
 
 @media (min-width: 600px) {
@@ -203,7 +371,7 @@ body { background: var(--bg); color: var(--text-primary); }
 }
 
 /* ============================================================
-   HEADER
+   HEADER - Smooth transition
    ============================================================ */
 .header {
   display: flex;
@@ -215,6 +383,7 @@ body { background: var(--bg); color: var(--text-primary); }
   background: inherit;
   backdrop-filter: inherit;
   z-index: 10;
+  transition: border-bottom-color 0.4s ease;
 }
 
 .header-left {
@@ -228,7 +397,7 @@ body { background: var(--bg); color: var(--text-primary); }
   height: 40px;
   border-radius: 12px;
   object-fit: cover;
-   background: transparent;
+  background: transparent;
 }
 
 .header-title {
@@ -237,6 +406,7 @@ body { background: var(--bg); color: var(--text-primary); }
   color: var(--text-primary);
   line-height: 1.2;
   letter-spacing: -0.3px;
+  transition: color 0.4s ease;
 }
 
 .header-sub {
@@ -245,6 +415,7 @@ body { background: var(--bg); color: var(--text-primary); }
   font-weight: 500;
   letter-spacing: 0.5px;
   text-transform: uppercase;
+  transition: color 0.4s ease;
 }
 
 .theme-pill {
@@ -257,6 +428,7 @@ body { background: var(--bg); color: var(--text-primary); }
   font-size: 12px;
   font-weight: 600;
   color: var(--text-secondary);
+  transition: background 0.4s ease, color 0.4s ease;
 }
 
 .theme-dot {
@@ -264,11 +436,16 @@ body { background: var(--bg); color: var(--text-primary); }
   height: 8px;
   border-radius: 50%;
   flex-shrink: 0;
+  transition: all 0.4s ease;
 }
+.theme-dot.theme-dawn { background: #e0a0c0; box-shadow: 0 0 6px #e0a0c0; }
+.theme-dot.theme-sunrise { background: #ffaa44; box-shadow: 0 0 6px #ffaa44; }
 .theme-dot.theme-morning { background: #f59e0b; box-shadow: 0 0 6px #f59e0b; }
-.theme-dot.theme-dawn    { background: #f97316; box-shadow: 0 0 6px #f97316; }
-.theme-dot.theme-sunset  { background: #ef4444; box-shadow: 0 0 6px #ef4444; }
-.theme-dot.theme-night   { background: #818cf8; box-shadow: 0 0 6px #818cf8; }
+.theme-dot.theme-noon { background: #ffd700; box-shadow: 0 0 6px #ffd700; }
+.theme-dot.theme-golden { background: #e8a020; box-shadow: 0 0 6px #e8a020; }
+.theme-dot.theme-sunset { background: #ef4444; box-shadow: 0 0 6px #ef4444; }
+.theme-dot.theme-dusk { background: #9b6b9e; box-shadow: 0 0 6px #9b6b9e; }
+.theme-dot.theme-night { background: #818cf8; box-shadow: 0 0 6px #818cf8; }
 
 /* ============================================================
    TAB CONTENT
@@ -279,6 +456,7 @@ body { background: var(--bg); color: var(--text-primary); }
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
   padding-bottom: 0;
+  transition: background 0.4s ease;
 }
 
 .tab-content::-webkit-scrollbar { width: 4px; }
@@ -312,6 +490,7 @@ body { background: var(--bg); color: var(--text-primary); }
   display: flex;
   align-items: center;
   gap: 8px;
+  transition: color 0.4s ease;
 }
 
 .count-pill {
@@ -326,6 +505,7 @@ body { background: var(--bg); color: var(--text-primary); }
   padding: 1px 8px;
   letter-spacing: 0;
   text-transform: none;
+  transition: background 0.4s ease, color 0.4s ease;
 }
 
 /* ============================================================
@@ -345,6 +525,7 @@ body { background: var(--bg); color: var(--text-primary); }
   transform: translateY(-50%);
   font-size: 16px;
   pointer-events: none;
+  transition: opacity 0.3s ease;
 }
 
 .search-input {
@@ -356,7 +537,7 @@ body { background: var(--bg); color: var(--text-primary); }
   font-size: 15px;
   font-family: 'DM Sans', sans-serif;
   color: var(--text-primary);
-  transition: border-color 0.2s, box-shadow 0.2s;
+  transition: all 0.3s ease;
 }
 
 .search-input::placeholder { color: var(--text-muted); }
@@ -383,7 +564,7 @@ body { background: var(--bg); color: var(--text-primary); }
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background 0.2s;
+  transition: all 0.3s ease;
 }
 .clear-x:hover { background: var(--accent-soft); color: var(--accent); }
 
@@ -409,7 +590,7 @@ body { background: var(--bg); color: var(--text-primary); }
   align-items: center;
   padding: 11px 16px;
   cursor: pointer;
-  transition: background 0.15s;
+  transition: background 0.2s ease;
   border-bottom: 1px solid var(--divider);
 }
 .dropdown-item:last-child { border-bottom: none; }
@@ -430,6 +611,7 @@ body { background: var(--bg); color: var(--text-primary); }
   border-radius: 18px;
   padding: 16px 18px;
   margin-bottom: 14px;
+  transition: all 0.4s ease;
 }
 
 .customer-avatar {
@@ -444,10 +626,11 @@ body { background: var(--bg); color: var(--text-primary); }
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  transition: all 0.4s ease;
 }
 
-.customer-name { font-size: 18px; font-weight: 700; color: var(--text-primary); }
-.customer-detail { font-size: 13px; color: var(--text-secondary); margin-top: 3px; }
+.customer-name { font-size: 18px; font-weight: 700; color: var(--text-primary); transition: color 0.4s ease; }
+.customer-detail { font-size: 13px; color: var(--text-secondary); margin-top: 3px; transition: color 0.4s ease; }
 
 /* ============================================================
    METRICS GRID
@@ -462,7 +645,7 @@ body { background: var(--bg); color: var(--text-primary); }
   border-radius: 16px;
   padding: 16px;
   border: 1px solid var(--glass-border);
-  transition: transform 0.2s ease;
+  transition: all 0.3s ease;
 }
 .metric-card:hover { transform: translateY(-2px); }
 
@@ -471,12 +654,12 @@ body { background: var(--bg); color: var(--text-primary); }
 .metric-card--amber  { background: var(--metric-amber); }
 .metric-card--purple { background: var(--metric-purple); }
 
-.metric-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 6px; }
-.metric-value { font-size: 18px; font-weight: 700; color: var(--text-primary); font-family: 'DM Mono', monospace; line-height: 1.2; }
-.metric-sub   { font-size: 11px; color: var(--text-muted); margin-top: 4px; }
+.metric-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 6px; transition: color 0.4s ease; }
+.metric-value { font-size: 18px; font-weight: 700; color: var(--text-primary); font-family: 'DM Mono', monospace; line-height: 1.2; transition: color 0.4s ease; }
+.metric-sub   { font-size: 11px; color: var(--text-muted); margin-top: 4px; transition: color 0.4s ease; }
 
 /* ============================================================
-   RECEIPT STYLES - Professional Receipt Look
+   RECEIPT STYLES
    ============================================================ */
 .receipt-card {
   background: var(--card-bg);
@@ -484,7 +667,7 @@ body { background: var(--bg); color: var(--text-primary); }
   border-radius: 16px;
   overflow: hidden;
   margin-bottom: 16px;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
@@ -502,6 +685,7 @@ body { background: var(--bg); color: var(--text-primary); }
   align-items: center;
   flex-wrap: wrap;
   gap: 10px;
+  transition: all 0.4s ease;
 }
 
 .receipt-store {
@@ -514,12 +698,14 @@ body { background: var(--bg); color: var(--text-primary); }
   font-size: 14px;
   letter-spacing: 0.5px;
   color: var(--text-primary);
+  transition: color 0.4s ease;
 }
 
 .receipt-store-id {
   font-size: 10px;
   font-family: 'DM Mono', monospace;
   color: var(--text-muted);
+  transition: color 0.4s ease;
 }
 
 .receipt-date {
@@ -531,6 +717,7 @@ body { background: var(--bg); color: var(--text-primary); }
   text-transform: uppercase;
   letter-spacing: 1px;
   color: var(--text-muted);
+  transition: color 0.4s ease;
 }
 
 .receipt-date-value {
@@ -538,6 +725,7 @@ body { background: var(--bg); color: var(--text-primary); }
   font-family: 'DM Mono', monospace;
   font-weight: 500;
   color: var(--text-secondary);
+  transition: color 0.4s ease;
 }
 
 .receipt-body {
@@ -556,6 +744,7 @@ body { background: var(--bg); color: var(--text-primary); }
   text-transform: uppercase;
   letter-spacing: 0.8px;
   color: var(--text-muted);
+  transition: all 0.4s ease;
 }
 
 .receipt-item {
@@ -569,11 +758,13 @@ body { background: var(--bg); color: var(--text-primary); }
 .receipt-item-name {
   color: var(--text-primary);
   font-weight: 500;
+  transition: color 0.4s ease;
 }
 
 .receipt-item-qty {
   color: var(--text-secondary);
   text-align: center;
+  transition: color 0.4s ease;
 }
 
 .receipt-item-price {
@@ -581,6 +772,7 @@ body { background: var(--bg); color: var(--text-primary); }
   text-align: right;
   font-family: 'DM Mono', monospace;
   font-size: 12px;
+  transition: color 0.4s ease;
 }
 
 .receipt-divider {
@@ -601,6 +793,7 @@ body { background: var(--bg); color: var(--text-primary); }
   text-transform: uppercase;
   letter-spacing: 1px;
   color: var(--text-muted);
+  transition: color 0.4s ease;
 }
 
 .receipt-total-amount {
@@ -608,6 +801,7 @@ body { background: var(--bg); color: var(--text-primary); }
   font-weight: 700;
   font-family: 'DM Mono', monospace;
   color: var(--text-primary);
+  transition: color 0.4s ease;
 }
 
 .receipt-status-row {
@@ -625,6 +819,7 @@ body { background: var(--bg); color: var(--text-primary); }
   text-transform: uppercase;
   letter-spacing: 1px;
   color: var(--text-muted);
+  transition: color 0.4s ease;
 }
 
 .receipt-footer {
@@ -641,6 +836,7 @@ body { background: var(--bg); color: var(--text-primary); }
   text-transform: uppercase;
   letter-spacing: 1.5px;
   color: var(--text-muted);
+  transition: color 0.4s ease;
 }
 
 .badge-receipt {
@@ -677,9 +873,10 @@ body { background: var(--bg); color: var(--text-primary); }
   border: 1px solid var(--glass-border);
   border-radius: 14px;
   margin-bottom: 20px;
+  transition: all 0.4s ease;
 }
 .weather-pin { font-size: 16px; }
-.weather-location-name { flex: 1; font-size: 14px; font-weight: 600; color: var(--text-primary); }
+.weather-location-name { flex: 1; font-size: 14px; font-weight: 600; color: var(--text-primary); transition: color 0.4s ease; }
 .weather-refresh-btn {
   background: none;
   border: none;
@@ -687,7 +884,7 @@ body { background: var(--bg); color: var(--text-primary); }
   cursor: pointer;
   padding: 4px;
   border-radius: 8px;
-  transition: transform 0.3s;
+  transition: transform 0.3s, opacity 0.3s;
 }
 .weather-refresh-btn:hover { transform: rotate(180deg); }
 
@@ -698,11 +895,12 @@ body { background: var(--bg); color: var(--text-primary); }
   padding: 32px 24px;
   text-align: center;
   margin-bottom: 16px;
+  transition: all 0.4s ease;
 }
 .weather-hero-icon      { font-size: 72px; margin-bottom: 8px; line-height: 1; }
-.weather-hero-temp      { font-size: 64px; font-weight: 700; color: var(--text-primary); line-height: 1; font-family: 'DM Mono', monospace; }
-.weather-hero-condition { font-size: 18px; font-weight: 600; color: var(--text-secondary); margin-top: 6px; }
-.weather-hero-feel      { font-size: 13px; color: var(--text-muted); margin-top: 4px; }
+.weather-hero-temp      { font-size: 64px; font-weight: 700; color: var(--text-primary); line-height: 1; font-family: 'DM Mono', monospace; transition: color 0.4s ease; }
+.weather-hero-condition { font-size: 18px; font-weight: 600; color: var(--text-secondary); margin-top: 6px; transition: color 0.4s ease; }
+.weather-hero-feel      { font-size: 13px; color: var(--text-muted); margin-top: 4px; transition: color 0.4s ease; }
 
 .weather-stats-grid {
   display: grid;
@@ -716,10 +914,11 @@ body { background: var(--bg); color: var(--text-primary); }
   border-radius: 16px;
   padding: 14px 10px;
   text-align: center;
+  transition: all 0.4s ease;
 }
 .weather-stat-icon { font-size: 22px; margin-bottom: 6px; }
-.weather-stat-val  { font-size: 15px; font-weight: 700; color: var(--text-primary); font-family: 'DM Mono', monospace; }
-.weather-stat-lbl  { font-size: 10px; color: var(--text-muted); margin-top: 3px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.8px; }
+.weather-stat-val  { font-size: 15px; font-weight: 700; color: var(--text-primary); font-family: 'DM Mono', monospace; transition: color 0.4s ease; }
+.weather-stat-lbl  { font-size: 10px; color: var(--text-muted); margin-top: 3px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.8px; transition: color 0.4s ease; }
 
 .forecast-list { display: flex; flex-direction: column; gap: 6px; }
 
@@ -732,18 +931,18 @@ body { background: var(--bg); color: var(--text-primary); }
   background: var(--card-bg);
   border: 1px solid var(--glass-border);
   border-radius: 14px;
-  transition: background 0.2s;
+  transition: all 0.3s ease;
 }
 .forecast-row:hover { background: var(--card-hover); }
 .forecast-row--today { border-color: var(--accent); background: var(--accent-soft); }
 
-.forecast-day       { font-size: 13px; font-weight: 600; color: var(--text-primary); }
+.forecast-day       { font-size: 13px; font-weight: 600; color: var(--text-primary); transition: color 0.4s ease; }
 .forecast-icon      { font-size: 18px; text-align: center; }
-.forecast-condition { font-size: 12px; color: var(--text-secondary); }
+.forecast-condition { font-size: 12px; color: var(--text-secondary); transition: color 0.4s ease; }
 .forecast-temps     { display: flex; gap: 6px; align-items: center; font-family: 'DM Mono', monospace; font-size: 13px; }
-.forecast-max       { font-weight: 700; color: var(--text-primary); }
-.forecast-min       { color: var(--text-muted); }
-.forecast-rain      { font-size: 11px; color: var(--text-muted); font-family: 'DM Mono', monospace; }
+.forecast-max       { font-weight: 700; color: var(--text-primary); transition: color 0.4s ease; }
+.forecast-min       { color: var(--text-muted); transition: color 0.4s ease; }
+.forecast-rain      { font-size: 11px; color: var(--text-muted); font-family: 'DM Mono', monospace; transition: color 0.4s ease; }
 
 .weather-error {
   display: flex;
@@ -763,6 +962,7 @@ body { background: var(--bg); color: var(--text-primary); }
   cursor: pointer;
   font-weight: 600;
   font-size: 14px;
+  transition: all 0.3s ease;
 }
 
 /* ============================================================
@@ -773,6 +973,7 @@ body { background: var(--bg); color: var(--text-primary); }
   border: 1px solid var(--glass-border);
   border-radius: 18px;
   overflow: hidden;
+  transition: all 0.4s ease;
 }
 
 .settings-row {
@@ -781,13 +982,13 @@ body { background: var(--bg); color: var(--text-primary); }
   align-items: center;
   padding: 13px 18px;
   border-bottom: 1px solid var(--divider);
-  transition: background 0.2s;
+  transition: all 0.3s ease;
 }
 .settings-row:last-child { border-bottom: none; }
 .settings-row--active { background: var(--accent-soft); }
 
-.settings-key { font-size: 14px; font-weight: 500; color: var(--text-secondary); }
-.settings-val { font-size: 13px; color: var(--text-primary); font-weight: 600; font-family: 'DM Mono', monospace; text-align: right; }
+.settings-key { font-size: 14px; font-weight: 500; color: var(--text-secondary); transition: color 0.4s ease; }
+.settings-val { font-size: 13px; color: var(--text-primary); font-weight: 600; font-family: 'DM Mono', monospace; text-align: right; transition: color 0.4s ease; }
 
 /* ============================================================
    BOTTOM NAV - SVG Icons
@@ -805,6 +1006,7 @@ body { background: var(--bg); color: var(--text-primary); }
   gap: 4px;
   z-index: 100;
   box-shadow: 0 -4px 24px rgba(0,0,0,0.12);
+  transition: all 0.4s ease;
 }
 
 @media (min-width: 600px) {
@@ -841,7 +1043,7 @@ body { background: var(--bg); color: var(--text-primary); }
   stroke: currentColor;
   stroke-width: 1.8;
   fill: none;
-  transition: transform 0.2s;
+  transition: transform 0.2s, stroke 0.3s ease;
 }
 
 .nav-btn--active .nav-icon-svg {
@@ -860,7 +1062,10 @@ body { background: var(--bg); color: var(--text-primary); }
   letter-spacing: 0.5px;
   text-transform: uppercase;
 }
-/* Add to App.css - Loader container styles */
+
+/* ============================================================
+   LOADER
+   ============================================================ */
 .loader-container {
   display: flex;
   flex-direction: column;
@@ -877,17 +1082,7 @@ body { background: var(--bg); color: var(--text-primary); }
   color: var(--text-muted);
   font-weight: 500;
   letter-spacing: 0.5px;
-}
-
-/* Theme-specific loader text colors */
-.theme-morning .loader-text,
-.theme-dawn .loader-text,
-.theme-sunset .loader-text {
-  color: var(--text-secondary);
-}
-
-.theme-night .loader-text {
-  color: var(--text-muted);
+  transition: color 0.4s ease;
 }
 
 /* ============================================================
@@ -916,8 +1111,8 @@ body { background: var(--bg); color: var(--text-primary); }
   color: var(--text-muted);
 }
 .empty-icon, .welcome-icon { font-size: 48px; margin-bottom: 14px; }
-.welcome-state h3 { font-size: 18px; font-weight: 600; color: var(--text-secondary); margin-bottom: 8px; }
-.welcome-state p  { font-size: 14px; color: var(--text-muted); }
+.welcome-state h3 { font-size: 18px; font-weight: 600; color: var(--text-secondary); margin-bottom: 8px; transition: color 0.4s ease; }
+.welcome-state p  { font-size: 14px; color: var(--text-muted); transition: color 0.4s ease; }
 .empty-state p    { font-size: 14px; margin-top: 8px; }
 
 /* ============================================================
