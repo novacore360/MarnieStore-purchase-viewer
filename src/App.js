@@ -1,7 +1,7 @@
-/* Updated App.js with realtime Firestore listeners */
+/* App.js - Updated with receipt-style purchases and SVG navigation */
 import React, { useState, useEffect, useCallback } from 'react';
 import { db } from './firebase';
-import { collection, getDocs, onSnapshot } from 'firebase/firestore';
+import { collection, getDocs } from 'firebase/firestore';
 import InstallPrompt from './InstallPrompt';
 import './App.css';
 
@@ -45,7 +45,7 @@ function App() {
   const [searchTerm, setSearchTerm] = useState('');
   const [suggestions, setSuggestions] = useState([]);
   const [selectedCustomer, setSelectedCustomer] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [theme, setTheme] = useState('morning');
 
@@ -78,69 +78,55 @@ function App() {
     localStorage.setItem('activeTab', activeTab);
   }, [activeTab]);
 
-  // ── REAL-TIME Firestore listeners ────────────────────────────────────────
+  // ── Load Firebase data ───────────────────────────────────────────────────
   useEffect(() => {
-    // Real-time listener for customers
-    const unsubscribeCustomers = onSnapshot(
-      collection(db, 'customers'),
-      (snapshot) => {
-        const customersData = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-        setCustomers(customersData);
-        setLoading(false);
-      },
-      (error) => {
-        console.error('Error listening to customers:', error);
-        setLoading(false);
-      }
-    );
-
-    // Real-time listener for purchases
-    const unsubscribePurchases = onSnapshot(
-      collection(db, 'purchases'),
-      (snapshot) => {
-        const purchasesData = snapshot.docs.map(doc => {
-          const raw = doc.data();
-          let product_data = [];
-          try {
-            product_data = typeof raw.product_data === 'string'
-              ? JSON.parse(raw.product_data)
-              : (raw.product_data || []);
-          } catch {}
-          return { id: doc.id, ...raw, product_data };
-        });
-        setAllPurchases(purchasesData);
-      },
-      (error) => {
-        console.error('Error listening to purchases:', error);
-      }
-    );
-
-    // Cleanup listeners on component unmount
-    return () => {
-      unsubscribeCustomers();
-      unsubscribePurchases();
-    };
-  }, []); // Empty dependency array - run once on mount
+    loadCustomers();
+    loadAllPurchases();
+  }, []);
 
   // ── Restore selected customer from localStorage after data loads ─────────
   useEffect(() => {
     if (customers.length === 0 || allPurchases.length === 0) return;
     const saved = localStorage.getItem('selectedCustomerData');
-    if (saved && !selectedCustomer) {
+    if (saved) {
       try {
         const customer = JSON.parse(saved);
-        // Verify customer still exists in real-time data
-        const existingCustomer = customers.find(c => c.id === customer.id);
-        if (existingCustomer) {
-          setSelectedCustomer(existingCustomer);
-          setSearchTerm(existingCustomer.name);
-        } else {
-          // Customer no longer exists in database
-          localStorage.removeItem('selectedCustomerData');
-        }
+        setSelectedCustomer(customer);
+        setSearchTerm(customer.name);
       } catch (e) {}
     }
-  }, [customers, allPurchases, selectedCustomer]);
+  }, [customers, allPurchases]);
+
+  const loadCustomers = async () => {
+    try {
+      setLoading(true);
+      const snap = await getDocs(collection(db, 'customers'));
+      setCustomers(snap.docs.map(d => ({ id: d.id, ...d.data() })));
+    } catch (e) {
+      console.error(e);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const loadAllPurchases = async () => {
+    try {
+      const snap = await getDocs(collection(db, 'purchases'));
+      const data = snap.docs.map(d => {
+        const raw = d.data();
+        let product_data = [];
+        try {
+          product_data = typeof raw.product_data === 'string'
+            ? JSON.parse(raw.product_data)
+            : (raw.product_data || []);
+        } catch {}
+        return { id: d.id, ...raw, product_data };
+      });
+      setAllPurchases(data);
+    } catch (e) {
+      console.error(e);
+    }
+  };
 
   // ── Weather fetch (Open-Meteo) ───────────────────────────────────────────
   const fetchWeather = useCallback(async () => {
@@ -518,7 +504,7 @@ function App() {
                   </div>
                   <div className="settings-row">
                     <span className="settings-key">Database</span>
-                    <span className="settings-val">Firebase Firestore (Realtime)</span>
+                    <span className="settings-val">Firebase Firestore</span>
                   </div>
                   <div className="settings-row">
                     <span className="settings-key">Total Customers</span>
