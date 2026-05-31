@@ -325,7 +325,7 @@ function App() {
 
                     <div className="metrics-grid">
                       <div className="metric-card metric-card--blue">
-                        <div className="metric-label">Total Spent</div>
+                        <div className="metric-label">Total Utang</div>
                         <div className="metric-value">₱{totalSpent.toLocaleString('en-PH',{minimumFractionDigits:2})}</div>
                         <div className="metric-sub">{customerPurchases.length} orders</div>
                       </div>
