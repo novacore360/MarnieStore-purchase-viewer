@@ -619,14 +619,14 @@ function App() {
                   <h2 className="section-title">Theme Schedule</h2>
                   <div className="settings-card">
                     {[
-                      { icon: '🌅', name: 'Dawn', time: '4:00 – 6:00 AM', key: 'dawn' },
-                      { icon: '☀️', name: 'Sunrise', time: '6:00 – 8:00 AM', key: 'sunrise' },
-                      { icon: '🌤️', name: 'Morning', time: '8:00 – 11:00 AM', key: 'morning' },
-                      { icon: '🔆', name: 'Noon', time: '11:00 AM – 1:00 PM', key: 'noon' },
-                      { icon: '✨', name: 'Golden Hour', time: '1:00 – 4:00 PM', key: 'golden' },
-                      { icon: '🌇', name: 'Sunset', time: '4:00 – 6:30 PM', key: 'sunset' },
-                      { icon: '🌙', name: 'Dusk', time: '6:30 – 8:00 PM', key: 'dusk' },
-                      { icon: '⭐', name: 'Night', time: '8:00 PM – 4:00 AM', key: 'night' },
+                     { icon: '🌅', name: 'Dawn', time: '4:00 – 6:00 AM', key: 'dawn' },
+{ icon: '☀️', name: 'Sunrise', time: '6:00 – 8:00 AM', key: 'sunrise' },
+{ icon: '🌤️', name: 'Morning', time: '8:00 – 11:00 AM', key: 'morning' },
+{ icon: '🔆', name: 'Noon', time: '11:00 AM – 3:00 PM', key: 'noon' },
+{ icon: '✨', name: 'Golden Hour', time: '3:00 – 5:00 PM', key: 'golden' },
+{ icon: '🌇', name: 'Sunset', time: '5:00 – 6:30 PM', key: 'sunset' },
+{ icon: '🌙', name: 'Dusk', time: '6:30 – 8:00 PM', key: 'dusk' },
+{ icon: '⭐', name: 'Night', time: '8:00 PM – 4:00 AM', key: 'night' },
                     ].map(t => (
                       <div key={t.key} className={`settings-row ${theme === t.key ? 'settings-row--active' : ''}`}>
                         <span className="settings-key">{t.icon} {t.name}</span>
