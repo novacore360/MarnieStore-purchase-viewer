@@ -39,16 +39,12 @@ function getWeatherInfo(code) {
   return WMO_CODES[code] || { label: 'Unknown', icon: '🌡️' };
 }
 
-// ─── Cube Loader (for dark mode) ────────────────────────────────────────────
-function CubeLoader() {
+// ─── Dark Mode Loader — Rotating glow orb ───────────────────────────────────
+function DarkLoader() {
   return (
-    <div className="cube-loader">
-      <div className="cube-top" />
-      <div className="cube-wrapper">
-        <span style={{'--i': 0}} className="cube-span" />
-        <span style={{'--i': 1}} className="cube-span" />
-        <span style={{'--i': 2}} className="cube-span" />
-        <span style={{'--i': 3}} className="cube-span" />
+    <div className="dm-loader-wrap">
+      <div className="dm-loader">
+        <span />
       </div>
     </div>
   );
@@ -291,7 +287,7 @@ function App() {
       <div className="app">
         <div className="glass-container">
           <div className="loader-container">
-            {darkMode ? <CubeLoader /> : <Loader size="medium" />}
+            {darkMode ? <DarkLoader /> : <Loader size="medium" />}
             <p className="loader-text">Loading Marnie Store...</p>
           </div>
         </div>
@@ -500,7 +496,7 @@ function App() {
 
               {weatherLoading ? (
                 <div className="loader-container">
-                  {darkMode ? <CubeLoader /> : <Loader size="medium" />}
+                  {darkMode ? <DarkLoader /> : <Loader size="medium" />}
                   <p className="loader-text">Fetching weather data...</p>
                 </div>
               ) : weatherError ? (
