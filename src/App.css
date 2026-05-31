@@ -1,4 +1,4 @@
-/* App.css - Updated version */
+/* App.css - Updated with receipt styles and SVG navigation */
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300&family=DM+Mono:wght@400;500&display=swap');
 
 /* ============================================================
@@ -17,6 +17,12 @@ body {
   min-height: 100vh;
   transition: background 0.6s ease;
   -webkit-font-smoothing: antialiased;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
 }
 
 /* ============================================================
@@ -53,6 +59,7 @@ body {
   --metric-amber: rgba(245,158,11,0.15);
   --metric-purple: rgba(139,92,246,0.15);
   --weather-hero-bg: rgba(59,130,246,0.12);
+  --receipt-stripe: rgba(0,0,0,0.02);
 }
 
 /* Dawn */
@@ -85,6 +92,7 @@ body {
   --metric-amber: rgba(234,124,42,0.18);
   --metric-purple: rgba(200,80,40,0.15);
   --weather-hero-bg: rgba(234,124,42,0.12);
+  --receipt-stripe: rgba(0,0,0,0.02);
 }
 
 /* Sunset */
@@ -117,6 +125,7 @@ body {
   --metric-amber: rgba(251,113,133,0.18);
   --metric-purple: rgba(200,40,80,0.15);
   --weather-hero-bg: rgba(225,29,72,0.1);
+  --receipt-stripe: rgba(0,0,0,0.02);
 }
 
 /* Night */
@@ -149,21 +158,13 @@ body {
   --metric-amber: rgba(251,191,36,0.18);
   --metric-purple: rgba(167,139,250,0.18);
   --weather-hero-bg: rgba(129,140,248,0.12);
+  --receipt-stripe: rgba(255,255,255,0.02);
 }
 
 /* ============================================================
-   APP SHELL - FIXED NAVIGATION LAYOUT
+   APP SHELL
    ============================================================ */
-body { 
-  background: var(--bg); 
-  color: var(--text-primary); 
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  overflow: hidden;
-}
+body { background: var(--bg); color: var(--text-primary); }
 
 .app {
   position: fixed;
@@ -202,7 +203,7 @@ body {
 }
 
 /* ============================================================
-   HEADER - FIXED
+   HEADER
    ============================================================ */
 .header {
   display: flex;
@@ -269,7 +270,7 @@ body {
 .theme-dot.theme-night   { background: #818cf8; box-shadow: 0 0 6px #818cf8; }
 
 /* ============================================================
-   TAB CONTENT AREA - SCROLLABLE
+   TAB CONTENT
    ============================================================ */
 .tab-content {
   flex: 1;
@@ -324,53 +325,6 @@ body {
   padding: 1px 8px;
   letter-spacing: 0;
   text-transform: none;
-}
-
-/* ============================================================
-   CUSTOMER OVERVIEW STATS (replaces store overview)
-   ============================================================ */
-.stat-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-}
-
-.stat-chip {
-  background: var(--card-bg);
-  border: 1px solid var(--glass-border);
-  border-radius: 16px;
-  padding: 14px 16px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  transition: transform 0.2s ease, background 0.2s ease;
-}
-
-.stat-chip:hover {
-  transform: translateY(-2px);
-  background: var(--card-hover);
-}
-
-.stat-chip--green { background: var(--stat-green); }
-.stat-chip--amber { background: var(--stat-amber); }
-.stat-chip--blue { background: var(--stat-blue); }
-.stat-chip--purple { background: var(--stat-purple); }
-
-.stat-chip-icon { font-size: 24px; flex-shrink: 0; }
-
-.stat-chip-val {
-  font-size: 16px;
-  font-weight: 700;
-  color: var(--text-primary);
-  line-height: 1.2;
-  font-family: 'DM Mono', monospace;
-}
-
-.stat-chip-lbl {
-  font-size: 11px;
-  color: var(--text-muted);
-  font-weight: 500;
-  margin-top: 2px;
 }
 
 /* ============================================================
@@ -521,111 +475,197 @@ body {
 .metric-sub   { font-size: 11px; color: var(--text-muted); margin-top: 4px; }
 
 /* ============================================================
-   PURCHASE CARDS
+   RECEIPT STYLES - Professional Receipt Look
    ============================================================ */
-.purchase-list { display: flex; flex-direction: column; gap: 12px; }
-
-.purchase-card {
+.receipt-card {
   background: var(--card-bg);
   border: 1px solid var(--glass-border);
-  border-radius: 18px;
-  padding: 16px;
-  transition: transform 0.2s, background 0.2s;
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 16px;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
-.purchase-card:hover { transform: translateY(-1px); background: var(--card-hover); }
 
-.purchase-card-header {
+.receipt-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.receipt-header {
+  background: var(--receipt-stripe);
+  padding: 16px 20px;
+  border-bottom: 2px dashed var(--divider);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 12px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid var(--divider);
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
-.purchase-date { font-size: 12px; color: var(--text-muted); font-family: 'DM Mono', monospace; }
+.receipt-store {
+  display: flex;
+  flex-direction: column;
+}
 
-.badge {
-  padding: 3px 10px;
-  border-radius: 20px;
+.receipt-store-name {
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  color: var(--text-primary);
+}
+
+.receipt-store-id {
+  font-size: 10px;
+  font-family: 'DM Mono', monospace;
+  color: var(--text-muted);
+}
+
+.receipt-date {
+  text-align: right;
+}
+
+.receipt-date-label {
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-muted);
+}
+
+.receipt-date-value {
+  font-size: 12px;
+  font-family: 'DM Mono', monospace;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.receipt-body {
+  padding: 16px 20px;
+}
+
+.receipt-items-header {
+  display: grid;
+  grid-template-columns: 3fr 0.8fr 1.2fr;
+  gap: 8px;
+  padding-bottom: 8px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid var(--divider);
   font-size: 10px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.8px;
+  color: var(--text-muted);
 }
-.badge--green { background: var(--badge-paid-bg); color: var(--badge-paid-color); }
-.badge--amber { background: var(--badge-pending-bg); color: var(--badge-pending-color); }
 
-.purchase-amount-row {
+.receipt-item {
+  display: grid;
+  grid-template-columns: 3fr 0.8fr 1.2fr;
+  gap: 8px;
+  padding: 8px 0;
+  font-size: 13px;
+}
+
+.receipt-item-name {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.receipt-item-qty {
+  color: var(--text-secondary);
+  text-align: center;
+}
+
+.receipt-item-price {
+  color: var(--text-secondary);
+  text-align: right;
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+}
+
+.receipt-divider {
+  margin: 12px 0;
+  border-top: 1px dashed var(--divider);
+}
+
+.receipt-total-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 12px;
-  background: var(--accent-soft);
-  border-radius: 10px;
-  margin-bottom: 10px;
+  padding: 10px 0 4px;
 }
-.purchase-amount-label { font-size: 12px; color: var(--text-secondary); }
-.purchase-amount-val   { font-size: 18px; font-weight: 700; font-family: 'DM Mono', monospace; color: var(--text-primary); }
 
-.items-section { margin-top: 10px; }
-.items-label {
-  font-size: 10px;
-  font-weight: 700;
+.receipt-total-label {
+  font-size: 11px;
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 1.2px;
+  letter-spacing: 1px;
   color: var(--text-muted);
-  margin-bottom: 8px;
 }
 
-.item-row {
-  display: grid;
-  grid-template-columns: 2fr 0.5fr 1fr 1fr;
-  gap: 8px;
+.receipt-total-amount {
+  font-size: 18px;
+  font-weight: 700;
+  font-family: 'DM Mono', monospace;
+  color: var(--text-primary);
+}
+
+.receipt-status-row {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  font-size: 13px;
-  padding: 6px 0;
-  border-bottom: 1px solid var(--divider);
+  padding: 8px 0;
+  margin-top: 8px;
+  border-top: 1px solid var(--divider);
 }
-.item-row:last-child { border-bottom: none; }
 
-.item-name     { color: var(--text-primary); font-weight: 500; }
-.item-qty      { color: var(--text-muted); text-align: center; font-family: 'DM Mono', monospace; }
-.item-price    { color: var(--text-secondary); text-align: right; font-family: 'DM Mono', monospace; }
-.item-subtotal { color: var(--text-primary); font-weight: 600; text-align: right; font-family: 'DM Mono', monospace; }
+.receipt-status-label {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-muted);
+}
 
-/* ============================================================
-   BADGES / STATES
-   ============================================================ */
-.spinner-wrap {
+.receipt-footer {
+  background: var(--receipt-stripe);
+  padding: 12px 20px;
+  border-top: 2px dashed var(--divider);
   display: flex;
   justify-content: center;
-  padding: 40px 0;
 }
-.spinner-wrap.large { padding: 60px 0; }
 
-.spinner {
-  width: 36px;
-  height: 36px;
-  border: 3px solid var(--divider);
-  border-top-color: var(--accent);
-  border-radius: 50%;
-  animation: spin 0.7s linear infinite;
-}
-@keyframes spin { to { transform: rotate(360deg); } }
-
-.empty-state, .welcome-state {
-  text-align: center;
-  padding: 50px 20px;
+.receipt-thankyou {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
   color: var(--text-muted);
 }
-.empty-icon, .welcome-icon { font-size: 48px; margin-bottom: 14px; }
-.welcome-state h3 { font-size: 18px; font-weight: 600; color: var(--text-secondary); margin-bottom: 8px; }
-.welcome-state p  { font-size: 14px; color: var(--text-muted); }
-.empty-state p    { font-size: 14px; margin-top: 8px; }
+
+.badge-receipt {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.badge-receipt--paid {
+  background: var(--badge-paid-bg);
+  color: var(--badge-paid-color);
+}
+
+.badge-receipt--pending {
+  background: var(--badge-pending-bg);
+  color: var(--badge-pending-color);
+}
 
 /* ============================================================
-   WEATHER
+   WEATHER STYLES
    ============================================================ */
 .weather-location-bar {
   display: flex;
@@ -749,7 +789,7 @@ body {
 .settings-val { font-size: 13px; color: var(--text-primary); font-weight: 600; font-family: 'DM Mono', monospace; text-align: right; }
 
 /* ============================================================
-   BOTTOM NAV - FIXED
+   BOTTOM NAV - SVG Icons
    ============================================================ */
 .bottom-nav {
   flex-shrink: 0;
@@ -777,7 +817,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 3px;
+  gap: 4px;
   padding: 8px 6px;
   background: none;
   border: none;
@@ -794,10 +834,61 @@ body {
   color: var(--nav-active-color);
 }
 
-.nav-icon  { font-size: 22px; line-height: 1; transition: transform 0.2s; }
-.nav-label { font-size: 10px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; }
+.nav-icon-svg {
+  width: 22px;
+  height: 22px;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  fill: none;
+  transition: transform 0.2s;
+}
 
-.nav-btn--active .nav-icon { transform: scale(1.1); }
+.nav-btn--active .nav-icon-svg {
+  stroke: var(--nav-active-color);
+  transform: scale(1.05);
+}
+
+.nav-icon-svg--active {
+  fill: var(--nav-active-color);
+  stroke: var(--nav-active-color);
+}
+
+.nav-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+/* ============================================================
+   BADGES / STATES
+   ============================================================ */
+.spinner-wrap {
+  display: flex;
+  justify-content: center;
+  padding: 40px 0;
+}
+.spinner-wrap.large { padding: 60px 0; }
+
+.spinner {
+  width: 36px;
+  height: 36px;
+  border: 3px solid var(--divider);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.empty-state, .welcome-state {
+  text-align: center;
+  padding: 50px 20px;
+  color: var(--text-muted);
+}
+.empty-icon, .welcome-icon { font-size: 48px; margin-bottom: 14px; }
+.welcome-state h3 { font-size: 18px; font-weight: 600; color: var(--text-secondary); margin-bottom: 8px; }
+.welcome-state p  { font-size: 14px; color: var(--text-muted); }
+.empty-state p    { font-size: 14px; margin-top: 8px; }
 
 /* ============================================================
    RESPONSIVE
@@ -806,13 +897,14 @@ body {
   .page { padding: 16px 14px 20px; }
   .metrics-grid { grid-template-columns: 1fr; }
   .stat-row { grid-template-columns: 1fr; }
-  .item-row { grid-template-columns: 2fr 0.4fr 1fr 1fr; font-size: 12px; }
+  .receipt-items-header { font-size: 9px; }
+  .receipt-item { font-size: 11px; }
+  .receipt-total-amount { font-size: 16px; }
   .weather-hero-temp { font-size: 52px; }
   .forecast-row { grid-template-columns: 72px 24px 1fr auto; }
   .forecast-rain { display: none; }
 }
 
 @media (min-width: 600px) {
-  .stat-row { grid-template-columns: repeat(4, 1fr); }
   .metrics-grid { grid-template-columns: repeat(4, 1fr); }
 }
