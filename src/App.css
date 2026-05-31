@@ -15,7 +15,7 @@ html { scroll-behavior: smooth; }
 body {
   font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
   min-height: 100vh;
-  transition: background 0.8s cubic-bezier(0.4, 0, 0.2, 1), color 0.4s ease;
+  transition: background 2.4s cubic-bezier(0.4, 0, 0.2, 1), color 0.6s ease;
   -webkit-font-smoothing: antialiased;
   position: fixed;
   top: 0;
@@ -25,6 +25,11 @@ body {
   overflow: hidden;
   margin: 0;
   padding: 0;
+}
+
+body::before,
+body::after {
+  transition: opacity 2.4s ease, background 2.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* ============================================================
@@ -295,50 +300,360 @@ body {
   --receipt-stripe: rgba(255, 255, 255, 0.05);
 }
 
-/* Scenic Background Application */
+/* ============================================================
+   SCENIC SKY BACKGROUNDS — Pure CSS Gradient, No Images
+   Each theme uses layered gradients to paint the sky atmosphere.
+   body::before = ground/horizon layer, body::after = sky + sun/moon layer
+   ============================================================ */
+
 body {
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
   color: var(--text-primary);
   position: relative;
+  background: #1a1a2e; /* fallback */
+  transition: background 1.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-body.theme-dawn { background-image: url('https://images.pexels.com/photos/1029624/dawn-morning-sunrise-sun-1029624.jpg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop'); }
-body.theme-sunrise { background-image: url('https://images.pexels.com/photos/1162251/beach-sunrise-sun-sunlight-1162251.jpg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop'); }
-body.theme-morning { background-image: url('https://images.pexels.com/photos/158827/field-corn-agriculture-farm-158827.jpg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop'); }
-body.theme-noon { background-image: url('https://images.pexels.com/photos/268415/pexels-photo-268415.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop'); }
-body.theme-golden { background-image: url('https://images.pexels.com/photos/1261728/field-sunset-sun-rays-golden-hour-1261728.jpg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop'); }
-body.theme-sunset { background-image: url('https://images.pexels.com/photos/189349/sunset-beach-sand-ocean-189349.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop'); }
-body.theme-dusk { background-image: url('https://images.pexels.com/photos/1169754/fall-sunset-sky-sun-1169754.jpg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop'); }
-body.theme-night { background-image: url('https://images.pexels.com/photos/1252890/star-sky-night-silhouette-1252890.jpg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop'); }
-
-/* Overlay for text readability */
-body::before {
+/* --- DAWN (4–6 AM): Deep indigo fades into dusty rose & soft peach mist --- */
+body.theme-dawn {
+  background:
+    /* thin horizon glow */
+    linear-gradient(180deg,
+      #1a0a2e 0%,
+      #2d1b4e 18%,
+      #6b3a6e 36%,
+      #c06080 52%,
+      #e8a08a 64%,
+      #f5c9a8 76%,
+      #fde8d0 88%,
+      #fff0e4 100%
+    );
+}
+/* Dawn ground strip */
+body.theme-dawn::before {
   content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.3);
+  position: fixed; inset: 0;
+  background:
+    /* silhouette ground line */
+    linear-gradient(180deg,
+      transparent 72%,
+      rgba(80, 40, 60, 0.25) 82%,
+      rgba(50, 20, 40, 0.55) 100%
+    );
   pointer-events: none;
-  z-index: -1;
+  z-index: 0;
+}
+/* Dawn sun glow */
+body.theme-dawn::after {
+  content: '';
+  position: fixed; inset: 0;
+  background:
+    radial-gradient(ellipse 60% 30% at 50% 78%, rgba(255, 180, 120, 0.55) 0%, transparent 70%),
+    radial-gradient(ellipse 30% 18% at 50% 82%, rgba(255, 220, 160, 0.7) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
 }
 
-body.theme-sunset::before,
-body.theme-dusk::before,
-body.theme-night::before {
-  background: rgba(0, 0, 0, 0.55);
+/* --- SUNRISE (6–8 AM): Blazing orange-gold horizon, sky still purplish above --- */
+body.theme-sunrise {
+  background:
+    linear-gradient(180deg,
+      #1c2a5e 0%,
+      #2e4a8a 14%,
+      #5878b8 28%,
+      #e88040 46%,
+      #f5a030 56%,
+      #ffd060 68%,
+      #ffe890 80%,
+      #fff5c0 100%
+    );
+}
+body.theme-sunrise::before {
+  content: '';
+  position: fixed; inset: 0;
+  background:
+    linear-gradient(180deg,
+      transparent 68%,
+      rgba(100, 50, 10, 0.3) 82%,
+      rgba(60, 30, 5, 0.6) 100%
+    );
+  pointer-events: none;
+  z-index: 0;
+}
+body.theme-sunrise::after {
+  content: '';
+  position: fixed; inset: 0;
+  background:
+    /* sun disk */
+    radial-gradient(circle 8% at 50% 75%, rgba(255, 255, 200, 0.95) 0%, rgba(255, 220, 80, 0.8) 30%, transparent 70%),
+    /* sun corona */
+    radial-gradient(ellipse 50% 22% at 50% 76%, rgba(255, 160, 40, 0.65) 0%, transparent 70%),
+    /* light rays fan */
+    radial-gradient(ellipse 80% 40% at 50% 80%, rgba(255, 200, 80, 0.3) 0%, transparent 65%);
+  pointer-events: none;
+  z-index: 0;
 }
 
-body.theme-dawn::before,
-body.theme-sunrise::before,
-body.theme-morning::before,
-body.theme-noon::before,
+/* --- MORNING (8–11 AM): Fresh clear blue sky, bright white-gold horizon --- */
+body.theme-morning {
+  background:
+    linear-gradient(180deg,
+      #0a4a8a 0%,
+      #1a6abf 16%,
+      #3a90e8 32%,
+      #70b8f0 50%,
+      #a8d8f8 66%,
+      #d4eefa 80%,
+      #eef8ff 92%,
+      #fffef0 100%
+    );
+}
+body.theme-morning::before {
+  content: '';
+  position: fixed; inset: 0;
+  background:
+    linear-gradient(180deg,
+      transparent 70%,
+      rgba(60, 120, 60, 0.15) 84%,
+      rgba(40, 90, 40, 0.35) 100%
+    );
+  pointer-events: none;
+  z-index: 0;
+}
+body.theme-morning::after {
+  content: '';
+  position: fixed; inset: 0;
+  background:
+    /* morning sun — high and bright */
+    radial-gradient(circle 6% at 72% 22%, rgba(255, 255, 220, 0.95) 0%, rgba(255, 240, 140, 0.6) 40%, transparent 70%),
+    radial-gradient(ellipse 40% 18% at 72% 24%, rgba(255, 240, 160, 0.35) 0%, transparent 65%),
+    /* soft clouds suggestion */
+    radial-gradient(ellipse 35% 10% at 25% 35%, rgba(255,255,255,0.25) 0%, transparent 70%),
+    radial-gradient(ellipse 25% 8% at 60% 42%, rgba(255,255,255,0.2) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* --- NOON (11 AM–3 PM): White-hot sky, radial sun overhead, deep blue zenith --- */
+body.theme-noon {
+  background:
+    radial-gradient(ellipse 130% 80% at 50% -10%,
+      #74c0fc 0%,
+      #4dabf7 18%,
+      #339af0 34%,
+      #228be6 50%,
+      #1c7ed6 65%
+    ),
+    linear-gradient(180deg,
+      #1c7ed6 0%,
+      #4dabf7 30%,
+      #a5d8ff 58%,
+      #e7f5ff 78%,
+      #fff9db 90%,
+      #ffffff 100%
+    );
+}
+body.theme-noon::before {
+  content: '';
+  position: fixed; inset: 0;
+  background:
+    linear-gradient(180deg,
+      transparent 72%,
+      rgba(100, 160, 80, 0.12) 85%,
+      rgba(60, 120, 40, 0.28) 100%
+    );
+  pointer-events: none;
+  z-index: 0;
+}
+body.theme-noon::after {
+  content: '';
+  position: fixed; inset: 0;
+  background:
+    /* blazing noon sun */
+    radial-gradient(circle 7% at 50% 8%, rgba(255, 255, 255, 1) 0%, rgba(255, 250, 200, 0.9) 30%, rgba(255, 240, 100, 0.4) 60%, transparent 80%),
+    radial-gradient(ellipse 60% 30% at 50% 10%, rgba(255, 245, 160, 0.4) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* --- GOLDEN HOUR (3–5 PM): Rich amber sky, long warm shadows --- */
+body.theme-golden {
+  background:
+    linear-gradient(180deg,
+      #1a3a6e 0%,
+      #2a5aac 12%,
+      #6080c8 24%,
+      #c8904a 42%,
+      #e8a820 54%,
+      #f5c840 64%,
+      #fce070 74%,
+      #fdeea0 86%,
+      #fef7cc 100%
+    );
+}
 body.theme-golden::before {
-  background: rgba(255, 255, 255, 0.1);
+  content: '';
+  position: fixed; inset: 0;
+  background:
+    linear-gradient(180deg,
+      transparent 65%,
+      rgba(120, 70, 10, 0.25) 80%,
+      rgba(80, 40, 5, 0.5) 100%
+    );
+  pointer-events: none;
+  z-index: 0;
+}
+body.theme-golden::after {
+  content: '';
+  position: fixed; inset: 0;
+  background:
+    /* golden sun low on horizon */
+    radial-gradient(circle 9% at 30% 68%, rgba(255, 240, 100, 0.95) 0%, rgba(255, 200, 40, 0.75) 35%, transparent 65%),
+    radial-gradient(ellipse 55% 28% at 30% 70%, rgba(255, 180, 40, 0.5) 0%, transparent 70%),
+    /* warm haze glow across horizon */
+    radial-gradient(ellipse 100% 35% at 50% 72%, rgba(255, 160, 40, 0.25) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* --- SUNSET (5–6:30 PM): Fiery crimson-orange-violet sky --- */
+body.theme-sunset {
+  background:
+    linear-gradient(180deg,
+      #0d0d2e 0%,
+      #1a1250 10%,
+      #3a1870 22%,
+      #8a2060 36%,
+      #c83050 48%,
+      #e85020 58%,
+      #f07818 66%,
+      #f5a030 76%,
+      #f8c860 86%,
+      #fce890 100%
+    );
+}
+body.theme-sunset::before {
+  content: '';
+  position: fixed; inset: 0;
+  background:
+    linear-gradient(180deg,
+      transparent 60%,
+      rgba(80, 20, 10, 0.4) 78%,
+      rgba(40, 10, 5, 0.75) 100%
+    );
+  pointer-events: none;
+  z-index: 0;
+}
+body.theme-sunset::after {
+  content: '';
+  position: fixed; inset: 0;
+  background:
+    /* setting sun */
+    radial-gradient(circle 7% at 50% 80%, rgba(255, 245, 160, 0.95) 0%, rgba(255, 190, 40, 0.8) 30%, transparent 65%),
+    /* horizon fire glow */
+    radial-gradient(ellipse 80% 30% at 50% 82%, rgba(255, 100, 20, 0.6) 0%, transparent 70%),
+    /* violet-pink upper atmosphere */
+    radial-gradient(ellipse 100% 50% at 50% 0%, rgba(80, 0, 80, 0.3) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* --- DUSK (6:30–8 PM): Deepening twilight, violet-indigo, afterglow on horizon --- */
+body.theme-dusk {
+  background:
+    linear-gradient(180deg,
+      #060618 0%,
+      #0e0a30 16%,
+      #1a1050 30%,
+      #2e1868 44%,
+      #5a2878 56%,
+      #8a3870 66%,
+      #c06050 76%,
+      #d88050 86%,
+      #e8a860 94%,
+      #f0c880 100%
+    );
+}
+body.theme-dusk::before {
+  content: '';
+  position: fixed; inset: 0;
+  background:
+    linear-gradient(180deg,
+      transparent 60%,
+      rgba(40, 10, 30, 0.45) 78%,
+      rgba(20, 5, 15, 0.8) 100%
+    );
+  pointer-events: none;
+  z-index: 0;
+}
+body.theme-dusk::after {
+  content: '';
+  position: fixed; inset: 0;
+  background:
+    /* afterglow below horizon */
+    radial-gradient(ellipse 70% 22% at 50% 95%, rgba(220, 120, 60, 0.5) 0%, transparent 70%),
+    /* faint venus/first star */
+    radial-gradient(circle 1% at 68% 18%, rgba(255, 255, 220, 0.8) 0%, transparent 100%),
+    /* upper sky deep violet */
+    radial-gradient(ellipse 120% 60% at 50% 0%, rgba(10, 5, 40, 0.5) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* --- NIGHT (8 PM–4 AM): Deep indigo-black sky, stars, moon glow --- */
+body.theme-night {
+  background:
+    linear-gradient(180deg,
+      #000005 0%,
+      #02021a 14%,
+      #05052e 28%,
+      #080840 42%,
+      #0d0d50 56%,
+      #101060 70%,
+      #141470 82%,
+      #101850 92%,
+      #0a1030 100%
+    );
+}
+body.theme-night::before {
+  content: '';
+  position: fixed; inset: 0;
+  background:
+    /* city/ground glow at bottom */
+    linear-gradient(180deg,
+      transparent 72%,
+      rgba(20, 20, 60, 0.4) 86%,
+      rgba(10, 10, 40, 0.8) 100%
+    ),
+    /* star field scatter via repeating radials */
+    radial-gradient(circle 0.8px at 12% 8%, rgba(255,255,255,0.9) 0%, transparent 100%),
+    radial-gradient(circle 0.6px at 28% 14%, rgba(255,255,255,0.7) 0%, transparent 100%),
+    radial-gradient(circle 1px   at 45% 6%,  rgba(255,255,255,0.85) 0%, transparent 100%),
+    radial-gradient(circle 0.7px at 62% 11%, rgba(255,255,255,0.75) 0%, transparent 100%),
+    radial-gradient(circle 0.9px at 78% 5%,  rgba(255,255,255,0.9) 0%, transparent 100%),
+    radial-gradient(circle 0.5px at 88% 19%, rgba(255,255,255,0.6) 0%, transparent 100%),
+    radial-gradient(circle 0.8px at 7%  22%, rgba(255,255,255,0.8) 0%, transparent 100%),
+    radial-gradient(circle 0.6px at 35% 28%, rgba(255,255,255,0.65) 0%, transparent 100%),
+    radial-gradient(circle 1px   at 55% 18%, rgba(255,255,255,0.85) 0%, transparent 100%),
+    radial-gradient(circle 0.7px at 72% 32%, rgba(255,255,255,0.7) 0%, transparent 100%),
+    radial-gradient(circle 0.5px at 92% 25%, rgba(255,255,255,0.6) 0%, transparent 100%),
+    radial-gradient(circle 0.9px at 18% 38%, rgba(255,255,255,0.75) 0%, transparent 100%),
+    radial-gradient(circle 0.6px at 48% 42%, rgba(255,255,255,0.65) 0%, transparent 100%),
+    radial-gradient(circle 0.8px at 83% 36%, rgba(255,255,255,0.8) 0%, transparent 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+body.theme-night::after {
+  content: '';
+  position: fixed; inset: 0;
+  background:
+    /* moon */
+    radial-gradient(circle 5% at 76% 14%, rgba(255, 255, 230, 0.95) 0%, rgba(240, 240, 200, 0.7) 30%, rgba(200, 200, 180, 0.2) 60%, transparent 80%),
+    /* moonlight glow */
+    radial-gradient(ellipse 30% 20% at 76% 16%, rgba(180, 180, 220, 0.2) 0%, transparent 70%),
+    /* milky way band suggestion */
+    radial-gradient(ellipse 80% 15% at 30% 50%, rgba(100, 100, 180, 0.06) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
 }
 
 /* ============================================================
@@ -370,6 +685,7 @@ body.theme-golden::before {
   flex-direction: column;
   overflow: hidden;
   position: relative;
+  z-index: 1;
   transition: background 0.6s ease, border-color 0.4s ease, box-shadow 0.4s ease;
 }
 
@@ -391,10 +707,13 @@ body.theme-golden::before {
   padding: 22px 24px 18px;
   border-bottom: 1px solid var(--divider);
   flex-shrink: 0;
-  background: inherit;
-  backdrop-filter: inherit;
-  z-index: 10;
-  transition: border-bottom-color 0.4s ease;
+  position: sticky;
+  top: 0;
+  background: var(--glass-bg);
+  backdrop-filter: blur(28px) saturate(1.8);
+  -webkit-backdrop-filter: blur(28px) saturate(1.8);
+  z-index: 50;
+  transition: border-bottom-color 0.4s ease, background 0.6s ease;
 }
 
 .header-left {
@@ -1007,13 +1326,15 @@ body.theme-golden::before {
   display: flex;
   align-items: center;
   background: var(--nav-bg);
-  backdrop-filter: blur(24px) saturate(1.6);
-  -webkit-backdrop-filter: blur(24px) saturate(1.6);
+  backdrop-filter: blur(28px) saturate(1.8);
+  -webkit-backdrop-filter: blur(28px) saturate(1.8);
   border-top: 1px solid var(--glass-border);
   border-radius: 0;
   padding: 8px 16px calc(10px + env(safe-area-inset-bottom));
   gap: 4px;
-  z-index: 100;
+  z-index: 50;
+  position: sticky;
+  bottom: 0;
   transition: all 0.4s ease;
 }
 
