@@ -228,6 +228,7 @@ body { background: var(--bg); color: var(--text-primary); }
   height: 40px;
   border-radius: 12px;
   object-fit: cover;
+   background: transparent;
 }
 
 .header-title {
