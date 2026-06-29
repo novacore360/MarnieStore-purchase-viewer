@@ -118,6 +118,12 @@ function App() {
     });
   }, []);
 
+  // ── Wake up backup service silently on visit ─────────────────────────────
+  useEffect(() => {
+    fetch('https://debtposinterprise-database-backup.onrender.com/', { mode: 'no-cors' })
+      .catch(() => {}); // ignore failures — this is just a wake-up ping
+  }, []);
+
   // ── Restore selected customer ────────────────────────────────────────────
   useEffect(() => {
     if (customers.length === 0 || allPurchases.length === 0) return;
