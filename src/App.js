@@ -122,7 +122,7 @@ function App() {
  // ── Wake up services silently on visit ─────────────────────────────
 useEffect(() => {
   const services = [
-    'https://debtposinterprise-database-backup.onrender.com/'
+    'https://debtposinterprise-database-backup.onrender.com/',
     'https://marniestore-messengerbot.onrender.com/'
   ];
 
