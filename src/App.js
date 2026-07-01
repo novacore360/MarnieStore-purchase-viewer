@@ -1,4 +1,5 @@
 /* App.js - Updated with Dark Mode Toggle */
+import MaintenanceOverride from './MaintenanceOverride';
 import React, { useState, useEffect, useCallback } from 'react';
 import { db } from './firebase';
 import { collection, getDocs } from 'firebase/firestore';
@@ -674,6 +675,7 @@ useEffect(() => {
       </div>
 
       <InstallPrompt />
+            <MaintenanceOverride />
     </div>
   );
 }
