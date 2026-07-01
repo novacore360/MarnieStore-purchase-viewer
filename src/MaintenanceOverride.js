@@ -9,7 +9,7 @@ import React from 'react';
 import styled, { keyframes } from 'styled-components';
 
 // ─── TOGGLE THIS TO ENABLE/DISABLE MAINTENANCE MODE ──────────
-const MAINTENANCE_ENABLED = true; // <-- Change to true to activate
+const MAINTENANCE_ENABLED = false; // <-- Change to true to activate
 // ──────────────────────────────────────────────────────────────
 
 // Customize your maintenance message here
