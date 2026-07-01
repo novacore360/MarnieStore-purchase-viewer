@@ -573,7 +573,7 @@ useEffect(() => {
                       <button className="btn-confirm" onClick={handleConfirmPassword}>Confirm</button>
                     </div>
                     <p className="password-gate-notice">
-                      If you don't know your password yet, please go to the store and ask for your password.
+                      If you don't know your password yet, please go to the store and ask for your password. (Pangayua sa tindahan imong 5 digit password.)
                     </p>
                   </div>
                 </section>
